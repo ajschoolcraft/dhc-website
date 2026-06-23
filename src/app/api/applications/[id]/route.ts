@@ -92,18 +92,24 @@ export async function PATCH(
       );
     }
 
-    await sendEmail({
-      to: application.email,
-      subject: "Your 2026 DHC Summit Application Has Been Approved",
-      react: ApprovalEmail({
-        firstName: application.first_name,
-        tierName: tier.name,
-        amount: formatCents(tier.price_cents),
-        paymentUrl,
-      }),
-    });
+    let emailSent = true;
+    try {
+      await sendEmail({
+        to: application.email,
+        subject: "Your 2026 DHC Summit Application Has Been Approved",
+        react: ApprovalEmail({
+          firstName: application.first_name,
+          tierName: tier.name,
+          amount: formatCents(tier.price_cents),
+          paymentUrl,
+        }),
+      });
+    } catch {
+      emailSent = false;
+      console.error(`Failed to send approval email to ${application.email}`);
+    }
 
-    return NextResponse.json({ status: "approved", paymentUrl });
+    return NextResponse.json({ status: "approved", paymentUrl, emailSent });
   }
 
   // Declined
