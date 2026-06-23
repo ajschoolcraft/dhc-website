@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,10 +11,11 @@ import { formatCents } from "@/lib/utils";
 import type { PricingTier } from "@/types";
 
 export default function PricingPage() {
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const [tiers, setTiers] = useState<PricingTier[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [editingTier, setEditingTier] = useState<PricingTier | null>(null);
+  const [error, setError] = useState("");
 
   async function loadTiers() {
     const { data } = await supabase
@@ -35,27 +36,36 @@ export default function PricingPage() {
     const price = Math.round(parseFloat(form.get("price") as string) * 100);
     const description = form.get("description") as string;
 
-    if (editingTier) {
-      await supabase
-        .from("pricing_tiers")
-        .update({ name, price_cents: price, description })
-        .eq("id", editingTier.id);
-    } else {
-      await supabase
-        .from("pricing_tiers")
-        .insert({ name, price_cents: price, description });
+    const { error: saveError } = editingTier
+      ? await supabase
+          .from("pricing_tiers")
+          .update({ name, price_cents: price, description })
+          .eq("id", editingTier.id)
+      : await supabase
+          .from("pricing_tiers")
+          .insert({ name, price_cents: price, description });
+
+    if (saveError) {
+      setError(saveError.message);
+      return;
     }
 
+    setError("");
     setShowModal(false);
     setEditingTier(null);
     loadTiers();
   }
 
   async function toggleActive(tier: PricingTier) {
-    await supabase
+    const { error: toggleError } = await supabase
       .from("pricing_tiers")
       .update({ active: !tier.active })
       .eq("id", tier.id);
+    if (toggleError) {
+      setError(toggleError.message);
+      return;
+    }
+    setError("");
     loadTiers();
   }
 
@@ -72,6 +82,8 @@ export default function PricingPage() {
           Add Tier
         </Button>
       </div>
+
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tiers.map((tier) => (

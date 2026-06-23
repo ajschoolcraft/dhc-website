@@ -1,5 +1,6 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ApplicationTable } from "@/components/admin/application-table";
+import Link from "next/link";
 import type { Application } from "@/types";
 import type { Metadata } from "next";
 
@@ -34,7 +35,7 @@ export default async function ApplicationsPage({
 
       <div className="flex gap-2">
         {filters.map((f) => (
-          <a
+          <Link
             key={f}
             href={f === "all" ? "/admin/applications" : `/admin/applications?status=${f}`}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
@@ -44,7 +45,7 @@ export default async function ApplicationsPage({
             }`}
           >
             {f.charAt(0).toUpperCase() + f.slice(1)}
-          </a>
+          </Link>
         ))}
       </div>
 

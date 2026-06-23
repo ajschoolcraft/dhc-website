@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/utils";
 import type { ContactSubmission } from "@/types";
 
 export default function AdminContactPage() {
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
 
   async function loadSubmissions() {

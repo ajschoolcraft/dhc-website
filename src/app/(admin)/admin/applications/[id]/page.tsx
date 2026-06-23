@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,13 +13,14 @@ import type { Application, PricingTier } from "@/types";
 export default function ApplicationDetailPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
   const [application, setApplication] = useState<Application | null>(null);
   const [tiers, setTiers] = useState<PricingTier[]>([]);
   const [selectedTier, setSelectedTier] = useState("");
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -54,7 +55,7 @@ export default function ApplicationDetailPage() {
       router.refresh();
     } else {
       const data = await res.json();
-      alert(data.error || "Something went wrong");
+      setError(data.error || "Something went wrong");
       setActionLoading(false);
     }
   }
@@ -114,6 +115,7 @@ export default function ApplicationDetailPage() {
                 onChange={setSelectedTier}
               />
             </div>
+            {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex gap-3">
               <Button
                 onClick={() => handleAction("approved")}

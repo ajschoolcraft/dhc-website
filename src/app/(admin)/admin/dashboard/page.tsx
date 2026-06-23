@@ -17,11 +17,6 @@ export default async function DashboardPage() {
     .select("*")
     .order("created_at", { ascending: false });
 
-  const { data: contactCount } = await supabase
-    .from("contact_submissions")
-    .select("id", { count: "exact", head: true })
-    .eq("read", false);
-
   const apps = (applications ?? []) as Application[];
 
   const counts = {
