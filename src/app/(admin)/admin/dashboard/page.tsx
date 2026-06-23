@@ -7,6 +7,7 @@ import type { Application } from "@/types";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Dashboard" };
+export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const supabase = createAdminClient();
