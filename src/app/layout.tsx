@@ -9,11 +9,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Digital Health Council",
-    template: "%s | Digital Health Council",
+    default: "Digital Health Counsel",
+    template: "%s | Digital Health Counsel",
   },
   description:
-    "Convening, educating and empowering leaders dedicated to transforming health care through technology, policy, and innovation.",
+    "A convening platform for leaders working at the intersection of healthcare, technology, artificial intelligence, law, governance, privacy, data strategy, and innovation.",
 };
 
 export default function RootLayout({
