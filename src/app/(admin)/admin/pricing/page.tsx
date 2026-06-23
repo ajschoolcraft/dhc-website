@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,18 +16,19 @@ export default function PricingPage() {
   const [showModal, setShowModal] = useState(false);
   const [editingTier, setEditingTier] = useState<PricingTier | null>(null);
   const [error, setError] = useState("");
-
-  async function loadTiers() {
-    const { data } = await supabase
-      .from("pricing_tiers")
-      .select("*")
-      .order("price_cents", { ascending: true });
-    if (data) setTiers(data as PricingTier[]);
-  }
+  const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => {
-    loadTiers();
-  }, []);
+    let cancelled = false;
+    supabase
+      .from("pricing_tiers")
+      .select("*")
+      .order("price_cents", { ascending: true })
+      .then(({ data }) => {
+        if (data && !cancelled) setTiers(data as PricingTier[]);
+      });
+    return () => { cancelled = true; };
+  }, [supabase, refreshKey]);
 
   async function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -53,7 +54,7 @@ export default function PricingPage() {
     setError("");
     setShowModal(false);
     setEditingTier(null);
-    loadTiers();
+    refresh();
   }
 
   async function toggleActive(tier: PricingTier) {
@@ -66,7 +67,7 @@ export default function PricingPage() {
       return;
     }
     setError("");
-    loadTiers();
+    refresh();
   }
 
   return (

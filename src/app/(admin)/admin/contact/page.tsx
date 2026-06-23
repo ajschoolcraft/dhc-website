@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,25 +11,26 @@ import type { ContactSubmission } from "@/types";
 export default function AdminContactPage() {
   const supabase = useMemo(() => createClient(), []);
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
-
-  async function loadSubmissions() {
-    const { data } = await supabase
-      .from("contact_submissions")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (data) setSubmissions(data as ContactSubmission[]);
-  }
+  const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => {
-    loadSubmissions();
-  }, []);
+    let cancelled = false;
+    supabase
+      .from("contact_submissions")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => {
+        if (data && !cancelled) setSubmissions(data as ContactSubmission[]);
+      });
+    return () => { cancelled = true; };
+  }, [supabase, refreshKey]);
 
   async function markAsRead(id: string) {
     await supabase
       .from("contact_submissions")
       .update({ read: true })
       .eq("id", id);
-    loadSubmissions();
+    refresh();
   }
 
   return (
