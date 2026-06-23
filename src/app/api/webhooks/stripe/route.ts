@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe/client";
+import { createStripeClient } from "@/lib/stripe/client";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { sendEmail } from "@/lib/email/send";
 import { PaymentConfirmedEmail } from "@/lib/email/templates/payment-confirmed";
@@ -7,6 +7,7 @@ import { formatCents } from "@/lib/utils";
 import type Stripe from "stripe";
 
 export async function POST(request: NextRequest) {
+  const stripe = createStripeClient();
   const body = await request.text();
   const signature = request.headers.get("stripe-signature");
 

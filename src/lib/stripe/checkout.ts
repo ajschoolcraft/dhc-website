@@ -1,4 +1,4 @@
-import { stripe } from "./client";
+import { createStripeClient } from "./client";
 
 type CreateCheckoutParams = {
   applicationId: string;
@@ -13,6 +13,7 @@ export async function createCheckoutSession({
   tierName,
   priceCents,
 }: CreateCheckoutParams): Promise<string> {
+  const stripe = createStripeClient();
   const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
 
   const session = await stripe.checkout.sessions.create({
