@@ -1,59 +1,123 @@
 import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
+
+type Speaker = { name: string; title: string; organization: string };
 
 type EventData = {
   title: string;
   date: string;
   location: string;
   description: string;
-  speakers: { name: string; title: string; organization: string }[];
+  themes: string[];
+  speakers: Speaker[];
 };
 
 const events: Record<string, EventData> = {
-  "2025-summit": {
-    title: "2025 DHC Annual Summit",
-    date: "October 2025",
-    location: "Washington, D.C.",
+  "dhc-2025": {
+    title: "DHC 2025",
+    date: "2025",
+    location: "Seattle, WA",
     description:
-      "Placeholder description for the 2025 summit. The founder will provide detailed content including session summaries, keynote highlights, and takeaways.",
+      "The third annual Digital Health Counsel summit and our largest gathering to date. DHC 2025 brought together general counsel, product counsel, privacy leaders, legal operations leaders, AI governance leaders, regulators, academics, and technology executives for two days of focused programming on the legal and governance infrastructure required for healthcare AI.",
+    themes: [
+      "Health system AI governance frameworks",
+      "AI vendor diligence and procurement",
+      "Contracting for healthcare AI",
+      "Product counsel for digital health companies",
+      "Privacy, cybersecurity, and health data governance",
+      "AI for legal operations",
+    ],
     speakers: [
-      { name: "Speaker Name", title: "Title", organization: "Organization" },
-      { name: "Speaker Name", title: "Title", organization: "Organization" },
+      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
     ],
   },
-  "2024-summit": {
-    title: "2024 DHC Annual Summit",
-    date: "October 2024",
-    location: "Washington, D.C.",
+  "microsoft-workshop-2025": {
+    title: "Spring 2025 Microsoft Workshop",
+    date: "Spring 2025",
+    location: "Microsoft Campus, Redmond, WA",
     description:
-      "Placeholder description for the 2024 summit. The founder will provide detailed content including session summaries, keynote highlights, and takeaways.",
-    speakers: [
-      { name: "Speaker Name", title: "Title", organization: "Organization" },
+      "An intensive workshop held in collaboration with Microsoft, bringing together healthcare AI leaders, enterprise technology strategists, and legal professionals. The workshop focused on responsible AI deployment in healthcare, enterprise governance frameworks, and practical strategies for managing AI risk at scale.",
+    themes: [
+      "Responsible AI in healthcare",
+      "Enterprise AI governance",
+      "Microsoft healthcare AI capabilities",
+      "AI risk management at scale",
     ],
+    speakers: [
+      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
+    ],
+  },
+  "dhc-2024": {
+    title: "DHC 2024",
+    date: "2024",
+    location: "Seattle, WA",
+    description:
+      "The second annual Digital Health Counsel summit expanded to include dedicated tracks on product counsel, privacy and data governance, and AI governance. DHC 2024 featured speakers from leading health systems, digital health companies, regulatory bodies, and law firms.",
+    themes: [
+      "Product counsel for healthcare AI",
+      "Privacy and data governance",
+      "AI governance and risk management",
+      "Evidence of value for AI products",
+      "Liability and risk allocation",
+    ],
+    speakers: [
+      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
+    ],
+  },
+  "dhc-2023": {
+    title: "DHC 2023",
+    date: "2023",
+    location: "Seattle, WA",
+    description:
+      "The inaugural Digital Health Counsel summit brought together healthcare AI and legal leaders for focused discussions on the emerging legal infrastructure needed for healthcare AI adoption. DHC 2023 established the foundation for what has become a serious recurring convening platform.",
+    themes: [
+      "Healthcare AI legal landscape",
+      "AI governance foundations",
+      "Digital health contracting",
+      "Regulatory frameworks for healthcare AI",
+    ],
+    speakers: [
+      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
+    ],
+  },
+  "2025-summit": {
+    title: "DHC 2025",
+    date: "2025",
+    location: "Seattle, WA",
+    description: "Redirected. See dhc-2025.",
+    themes: [],
+    speakers: [],
+  },
+  "2024-summit": {
+    title: "DHC 2024",
+    date: "2024",
+    location: "Seattle, WA",
+    description: "Redirected. See dhc-2024.",
+    themes: [],
+    speakers: [],
   },
 };
 
-type Params = { slug: string };
+export function generateStaticParams() {
+  return Object.keys(events).map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<Params>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const event = events[slug];
   if (!event) return { title: "Event Not Found" };
-  return { title: event.title, description: event.description };
-}
-
-export function generateStaticParams(): Params[] {
-  return Object.keys(events).map((slug) => ({ slug }));
+  return { title: event.title };
 }
 
 export default async function EventPage({
   params,
 }: {
-  params: Promise<Params>;
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const event = events[slug];
@@ -62,33 +126,50 @@ export default async function EventPage({
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <div className="mb-4">
+        <Badge variant="info">{event.date}</Badge>
+      </div>
       <h1 className="text-3xl font-bold text-text">{event.title}</h1>
-      <p className="mt-2 text-text-light">
-        {event.date} &middot; {event.location}
-      </p>
+      <p className="mt-2 text-text-light">{event.location}</p>
 
-      <div className="mt-8 aspect-video bg-surface-dark rounded-xl flex items-center justify-center text-text-light">
-        Event Photo Gallery Placeholder
+      <div className="mt-8 prose prose-gray max-w-none">
+        <p className="text-text-light leading-relaxed">{event.description}</p>
       </div>
 
-      <div className="mt-8 prose prose-slate max-w-none">
-        <p className="text-text-light">{event.description}</p>
-      </div>
+      {event.themes.length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-xl font-bold text-text">Key Themes</h2>
+          <ul className="mt-4 space-y-2">
+            {event.themes.map((theme) => (
+              <li key={theme} className="flex items-start gap-3">
+                <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
+                <span className="text-text-light">{theme}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold text-text">Speakers</h2>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {event.speakers.map((speaker, i) => (
-            <div key={i} className="text-center">
-              <div className="mx-auto h-24 w-24 rounded-full bg-surface-dark flex items-center justify-center text-text-light text-xs">
-                Photo
+      {event.speakers.length > 0 && event.speakers[0].name !== "Speaker details" && (
+        <section className="mt-10">
+          <h2 className="text-xl font-bold text-text">Speakers</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {event.speakers.map((speaker, i) => (
+              <div key={i} className="rounded-lg border border-border p-4">
+                <p className="font-medium text-text">{speaker.name}</p>
+                <p className="text-sm text-text-light">{speaker.title}</p>
+                <p className="text-sm text-text-light">{speaker.organization}</p>
               </div>
-              <h3 className="mt-3 font-semibold text-text">{speaker.name}</h3>
-              <p className="text-sm text-text-light">{speaker.title}</p>
-              <p className="text-sm text-text-light">{speaker.organization}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="mt-10 rounded-xl bg-surface p-6 text-center">
+        <p className="text-sm text-text-light">
+          Photos, detailed speaker information, and session summaries will be
+          added as content is provided.
+        </p>
       </section>
     </div>
   );
