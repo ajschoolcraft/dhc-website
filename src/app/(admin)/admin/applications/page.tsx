@@ -7,6 +7,38 @@ import type { Metadata } from "next";
 export const metadata: Metadata = { title: "Applications" };
 export const dynamic = "force-dynamic";
 
+const filters = [
+  "all",
+  "new",
+  "needs_review",
+  "accepted_complimentary",
+  "accepted_reduced",
+  "accepted_paid",
+  "speaker_consideration",
+  "sponsor_followup",
+  "waitlist",
+  "declined",
+  "needs_more_info",
+  "registered",
+  "withdrawn",
+];
+
+const filterLabels: Record<string, string> = {
+  all: "All",
+  new: "New",
+  needs_review: "Review",
+  accepted_complimentary: "Comp",
+  accepted_reduced: "Reduced",
+  accepted_paid: "Paid",
+  speaker_consideration: "Speaker",
+  sponsor_followup: "Sponsor",
+  waitlist: "Waitlist",
+  declined: "Declined",
+  needs_more_info: "Need Info",
+  registered: "Registered",
+  withdrawn: "Withdrawn",
+};
+
 export default async function ApplicationsPage({
   searchParams,
 }: {
@@ -27,24 +59,22 @@ export default async function ApplicationsPage({
   const { data } = await query;
   const applications = (data ?? []) as Application[];
 
-  const filters = ["all", "pending", "approved", "declined", "paid"];
-
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-text">Applications</h1>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {filters.map((f) => (
           <Link
             key={f}
             href={f === "all" ? "/admin/applications" : `/admin/applications?status=${f}`}
-            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
               (f === "all" && !status) || f === status
-                ? "bg-primary text-white"
+                ? "bg-accent text-white"
                 : "bg-white text-text-light border border-border hover:bg-surface"
             }`}
           >
-            {f.charAt(0).toUpperCase() + f.slice(1)}
+            {filterLabels[f] ?? f}
           </Link>
         ))}
       </div>

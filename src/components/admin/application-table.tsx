@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Badge, statusBadgeVariant } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
+import { STATUS_LABELS } from "@/types";
 import type { Application } from "@/types";
 
 type ApplicationTableProps = {
@@ -30,7 +31,7 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
         <TableRow>
           <TableHead>Name</TableHead>
           <TableHead>Organization</TableHead>
-          <TableHead>Type</TableHead>
+          <TableHead>Role</TableHead>
           <TableHead>Date</TableHead>
           <TableHead>Status</TableHead>
         </TableRow>
@@ -41,17 +42,19 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
             <TableCell>
               <Link
                 href={`/admin/applications/${app.id}`}
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-accent hover:underline"
               >
                 {app.first_name} {app.last_name}
               </Link>
             </TableCell>
             <TableCell>{app.organization}</TableCell>
-            <TableCell className="capitalize">{app.attendee_type}</TableCell>
+            <TableCell className="text-xs">
+              {app.role_category?.replace(/_/g, " ")}
+            </TableCell>
             <TableCell>{formatDate(app.created_at)}</TableCell>
             <TableCell>
               <Badge variant={statusBadgeVariant(app.status)}>
-                {app.status}
+                {STATUS_LABELS[app.status] ?? app.status}
               </Badge>
             </TableCell>
           </TableRow>

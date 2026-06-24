@@ -53,6 +53,9 @@ export default function AdminContactPage() {
                     <Badge variant={sub.read ? "default" : "info"}>
                       {sub.read ? "Read" : "New"}
                     </Badge>
+                    {sub.type === "sponsorship" && (
+                      <Badge variant="info">Sponsor</Badge>
+                    )}
                     <span className="text-xs text-text-light">
                       {formatDate(sub.created_at)}
                     </span>

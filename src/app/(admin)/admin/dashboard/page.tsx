@@ -2,6 +2,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, statusBadgeVariant } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
+import { STATUS_LABELS } from "@/types";
 import Link from "next/link";
 import type { Application } from "@/types";
 import type { Metadata } from "next";
@@ -20,25 +21,29 @@ export default async function DashboardPage() {
   const apps = (applications ?? []) as Application[];
 
   const counts = {
-    pending: apps.filter((a) => a.status === "pending").length,
-    approved: apps.filter((a) => a.status === "approved").length,
-    paid: apps.filter((a) => a.status === "paid").length,
+    new: apps.filter((a) => a.status === "new").length,
+    needs_review: apps.filter((a) => a.status === "needs_review").length,
+    accepted: apps.filter((a) => a.status.startsWith("accepted_")).length,
+    registered: apps.filter((a) => a.status === "registered").length,
+    waitlist: apps.filter((a) => a.status === "waitlist").length,
     declined: apps.filter((a) => a.status === "declined").length,
     total: apps.length,
   };
 
-  const recent = apps.slice(0, 5);
+  const recent = apps.slice(0, 10);
 
   return (
     <div className="space-y-8">
       <h1 className="text-2xl font-bold text-text">Dashboard</h1>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {(
           [
-            { label: "Pending", value: counts.pending, variant: "warning" },
-            { label: "Approved", value: counts.approved, variant: "info" },
-            { label: "Paid", value: counts.paid, variant: "success" },
+            { label: "New", value: counts.new, variant: "warning" },
+            { label: "Needs Review", value: counts.needs_review, variant: "warning" },
+            { label: "Accepted", value: counts.accepted, variant: "info" },
+            { label: "Registered", value: counts.registered, variant: "success" },
+            { label: "Waitlist", value: counts.waitlist, variant: "warning" },
             { label: "Declined", value: counts.declined, variant: "danger" },
           ] as const
         ).map((stat) => (
@@ -77,16 +82,16 @@ export default async function DashboardPage() {
                     </p>
                   </div>
                   <Badge variant={statusBadgeVariant(app.status)}>
-                    {app.status}
+                    {STATUS_LABELS[app.status] ?? app.status}
                   </Badge>
                 </Link>
               ))}
             </div>
           )}
-          {apps.length > 5 && (
+          {apps.length > 10 && (
             <Link
               href="/admin/applications"
-              className="mt-4 block text-sm font-medium text-primary hover:underline"
+              className="mt-4 block text-sm font-medium text-accent hover:underline"
             >
               View all applications
             </Link>
