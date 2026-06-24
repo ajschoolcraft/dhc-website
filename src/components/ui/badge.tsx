@@ -34,13 +34,24 @@ export function statusBadgeVariant(
   status: string
 ): BadgeVariant {
   switch (status) {
-    case "pending":
+    case "new":
       return "warning";
-    case "approved":
+    case "needs_review":
+      return "warning";
+    case "accepted_complimentary":
+    case "accepted_reduced":
+    case "accepted_paid":
       return "info";
+    case "speaker_consideration":
+    case "sponsor_followup":
+      return "info";
+    case "waitlist":
+    case "needs_more_info":
+      return "warning";
     case "declined":
+    case "withdrawn":
       return "danger";
-    case "paid":
+    case "registered":
       return "success";
     default:
       return "default";

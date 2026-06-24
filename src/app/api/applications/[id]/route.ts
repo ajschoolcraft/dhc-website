@@ -5,6 +5,15 @@ import { createCheckoutSession } from "@/lib/stripe/checkout";
 import { sendEmail } from "@/lib/email/send";
 import { ApprovalEmail } from "@/lib/email/templates/approval";
 import { formatCents } from "@/lib/utils";
+import type { ApplicationStatus } from "@/types";
+
+const VALID_STATUSES: ApplicationStatus[] = [
+  "new", "needs_review",
+  "accepted_complimentary", "accepted_reduced", "accepted_paid",
+  "speaker_consideration", "sponsor_followup",
+  "waitlist", "declined", "needs_more_info",
+  "registered", "withdrawn",
+];
 
 type Params = { id: string };
 
@@ -24,11 +33,11 @@ export async function PATCH(
   const { id } = await params;
   const body = await request.json();
   const { status, pricing_tier_id } = body as {
-    status: "approved" | "declined";
+    status: ApplicationStatus;
     pricing_tier_id?: string;
   };
 
-  if (!status || !["approved", "declined"].includes(status)) {
+  if (!status || !VALID_STATUSES.includes(status)) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
 
@@ -47,10 +56,11 @@ export async function PATCH(
     );
   }
 
-  if (status === "approved") {
+  // Acceptance with payment
+  if (status === "accepted_paid" || status === "accepted_reduced") {
     if (!pricing_tier_id) {
       return NextResponse.json(
-        { error: "Pricing tier is required for approval" },
+        { error: "Pricing tier is required for paid acceptance" },
         { status: 400 }
       );
     }
@@ -78,7 +88,7 @@ export async function PATCH(
     const { error: updateError } = await admin
       .from("applications")
       .update({
-        status: "approved",
+        status,
         pricing_tier_id,
         stripe_payment_link: paymentUrl,
         reviewed_at: new Date().toISOString(),
@@ -86,17 +96,14 @@ export async function PATCH(
       .eq("id", id);
 
     if (updateError) {
-      return NextResponse.json(
-        { error: updateError.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: updateError.message }, { status: 500 });
     }
 
     let emailSent = true;
     try {
       await sendEmail({
         to: application.email,
-        subject: "Your 2026 DHC Summit Application Has Been Approved",
+        subject: "Your DHC26 Application Has Been Accepted",
         react: ApprovalEmail({
           firstName: application.first_name,
           tierName: tier.name,
@@ -109,14 +116,48 @@ export async function PATCH(
       console.error(`Failed to send approval email to ${application.email}`);
     }
 
-    return NextResponse.json({ status: "approved", paymentUrl, emailSent });
+    return NextResponse.json({ status, paymentUrl, emailSent });
   }
 
-  // Declined
+  // Complimentary acceptance — no payment
+  if (status === "accepted_complimentary") {
+    const { error: updateError } = await admin
+      .from("applications")
+      .update({
+        status,
+        reviewed_at: new Date().toISOString(),
+      })
+      .eq("id", id);
+
+    if (updateError) {
+      return NextResponse.json({ error: updateError.message }, { status: 500 });
+    }
+
+    let emailSent = true;
+    try {
+      await sendEmail({
+        to: application.email,
+        subject: "Your DHC26 Application Has Been Accepted",
+        react: ApprovalEmail({
+          firstName: application.first_name,
+          tierName: "Complimentary",
+          amount: "Complimentary",
+          paymentUrl: null,
+        }),
+      });
+    } catch {
+      emailSent = false;
+      console.error(`Failed to send approval email to ${application.email}`);
+    }
+
+    return NextResponse.json({ status, emailSent });
+  }
+
+  // All other status changes
   const { error: updateError } = await admin
     .from("applications")
     .update({
-      status: "declined",
+      status,
       reviewed_at: new Date().toISOString(),
     })
     .eq("id", id);
@@ -125,5 +166,5 @@ export async function PATCH(
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
 
-  return NextResponse.json({ status: "declined" });
+  return NextResponse.json({ status });
 }
