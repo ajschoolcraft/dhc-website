@@ -64,8 +64,8 @@ export async function POST(request: NextRequest) {
         subject: "DHC26 Application Received",
         react: ApplicationReceivedEmail({ firstName: body.first_name }),
       });
-    } catch {
-      console.error(`Failed to send confirmation email to ${body.email}`);
+    } catch (err) {
+      console.error(`Failed to send confirmation email to ${body.email}`, err);
     }
 
     if (process.env.ADMIN_EMAIL) {
@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
             applicationTypes: body.application_types,
           }),
         });
-      } catch {
-        console.error("Failed to send admin notification email");
+      } catch (err) {
+        console.error("Failed to send admin notification email", err);
       }
     }
 
