@@ -15,7 +15,7 @@ type ApprovalEmailProps = {
   firstName: string;
   tierName: string;
   amount: string;
-  paymentUrl: string;
+  paymentUrl: string | null;
 };
 
 export function ApprovalEmail({
@@ -27,14 +27,14 @@ export function ApprovalEmail({
   return (
     <Html>
       <Head />
-      <Preview>Your application to the 2026 DHC Summit has been approved</Preview>
+      <Preview>Your DHC26 application has been accepted</Preview>
       <Body style={bodyStyle}>
         <Container style={containerStyle}>
           <Heading style={headingStyle}>Application Approved</Heading>
           <Text style={textStyle}>Dear {firstName},</Text>
           <Text style={textStyle}>
-            We are pleased to inform you that your application to attend the
-            2026 DHC Annual Summit has been approved.
+            We are pleased to inform you that your application to attend
+            DHC26 — the 2026 Digital Health Counsel AI Summit — has been accepted.
           </Text>
           <Section style={detailsStyle}>
             <Text style={detailLabelStyle}>Registration Type</Text>
@@ -42,18 +42,27 @@ export function ApprovalEmail({
             <Text style={detailLabelStyle}>Amount</Text>
             <Text style={detailValueStyle}>{amount}</Text>
           </Section>
-          <Text style={textStyle}>
-            Please complete your registration by clicking the button below to
-            process your payment.
-          </Text>
-          <Section style={{ textAlign: "center" as const, margin: "32px 0" }}>
-            <Link href={paymentUrl} style={buttonStyle}>
-              Complete Payment
-            </Link>
-          </Section>
+          {paymentUrl ? (
+            <>
+              <Text style={textStyle}>
+                Please complete your registration by clicking the button below to
+                process your payment.
+              </Text>
+              <Section style={{ textAlign: "center" as const, margin: "32px 0" }}>
+                <Link href={paymentUrl} style={buttonStyle}>
+                  Complete Payment
+                </Link>
+              </Section>
+            </>
+          ) : (
+            <Text style={textStyle}>
+              Your registration is complimentary. No payment is required.
+              We look forward to seeing you at DHC26!
+            </Text>
+          )}
           <Hr style={hrStyle} />
           <Text style={footerStyle}>
-            Digital Health Council &middot; Digital Health Group, LLC
+            Digital Health Counsel
           </Text>
         </Container>
       </Body>
@@ -75,7 +84,7 @@ const containerStyle = {
 };
 
 const headingStyle = {
-  color: "#1e3a5f",
+  color: "#1a1040",
   fontSize: "24px",
   fontWeight: "700" as const,
   margin: "0 0 24px",
@@ -111,7 +120,7 @@ const detailValueStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: "#1e3a5f",
+  backgroundColor: "#d6297b",
   borderRadius: "8px",
   color: "#ffffff",
   display: "inline-block",

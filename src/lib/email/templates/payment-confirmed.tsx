@@ -23,14 +23,14 @@ export function PaymentConfirmedEmail({
   return (
     <Html>
       <Head />
-      <Preview>Payment confirmed — you are registered for the 2026 DHC Summit</Preview>
+      <Preview>Payment confirmed — you are registered for DHC26</Preview>
       <Body style={bodyStyle}>
         <Container style={containerStyle}>
           <Heading style={headingStyle}>Payment Confirmed</Heading>
           <Text style={textStyle}>Dear {firstName},</Text>
           <Text style={textStyle}>
-            Your payment of {amount} for the 2026 DHC Annual Summit has been
-            confirmed. You are now registered to attend.
+            Your payment of {amount} for DHC26 — the 2026 Digital Health
+            Counsel AI Summit — has been confirmed. You are now registered to attend.
           </Text>
           <Text style={detailLabelStyle}>Registration Type</Text>
           <Text style={detailValueStyle}>{tierName}</Text>
@@ -41,7 +41,7 @@ export function PaymentConfirmedEmail({
           </Text>
           <Hr style={hrStyle} />
           <Text style={footerStyle}>
-            Digital Health Council &middot; Digital Health Group, LLC
+            Digital Health Counsel
           </Text>
         </Container>
       </Body>
@@ -63,7 +63,7 @@ const containerStyle = {
 };
 
 const headingStyle = {
-  color: "#1e3a5f",
+  color: "#1a1040",
   fontSize: "24px",
   fontWeight: "700" as const,
   margin: "0 0 24px",
