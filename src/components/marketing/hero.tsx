@@ -5,24 +5,26 @@ export function Hero() {
   return (
     <section className="bg-primary text-white">
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Transforming Health Care
-          <span className="block text-accent-light">Through Innovation</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-white/80">
-          Digital Health Council convenes, educates and empowers leaders
-          dedicated to transforming health care through technology, policy, and
-          innovation.
+        <p className="text-sm font-semibold uppercase tracking-widest text-accent">
+          December 2–3, 2026 &middot; Bell Harbor Conference Center, Seattle
         </p>
-        <div className="mt-10 flex gap-4">
-          <Link href="/summit-2026">
-            <Button size="lg" className="bg-accent hover:bg-accent-light text-white">
-              2026 Summit
-            </Button>
+        <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          Digital Health Counsel
+        </h1>
+        <p className="mt-4 text-xl font-medium text-accent-light sm:text-2xl">
+          From Promise to Proof: The Legal Operating System for Healthcare AI
+        </p>
+        <p className="mt-6 max-w-2xl text-lg text-white/70">
+          The curated summit for the lawyers and leaders responsible for making
+          healthcare AI provable, governable, contractable, and trustworthy.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link href="/apply">
+            <Button size="lg">Apply to Participate</Button>
           </Link>
           <Link href="/events">
-            <Button size="lg" variant="ghost" className="text-white hover:bg-white/10">
-              Past Events
+            <Button size="lg" variant="ghost" className="text-white hover:bg-white/10 border border-white/20">
+              Explore Past Summits
             </Button>
           </Link>
         </div>
