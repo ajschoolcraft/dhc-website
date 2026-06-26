@@ -2,6 +2,12 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  const isLoginPage = request.nextUrl.pathname === "/admin";
+
+  if (isLoginPage) {
+    return NextResponse.next();
+  }
+
   const response = NextResponse.next({
     request: { headers: request.headers },
   });
@@ -28,15 +34,8 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
-  const isLoginPage = request.nextUrl.pathname === "/admin";
-
-  if (isAdminRoute && !isLoginPage && !user) {
+  if (!user) {
     return NextResponse.redirect(new URL("/admin", request.url));
-  }
-
-  if (isLoginPage && user) {
-    return NextResponse.redirect(new URL("/admin/dashboard", request.url));
   }
 
   return response;
