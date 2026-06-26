@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     const { error: updateError } = await supabase
       .from("applications")
       .update({
-        status: "paid",
+        status: "registered",
         stripe_session_id: session.id,
         paid_at: new Date().toISOString(),
       })
