@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Health Counsel — DHC26 Website
+
+The official website for [Digital Health Counsel](https://digitalhealthcounsel.com) and the DHC26 AI Summit (December 2–3, 2026, Bell Harbor Conference Center, Seattle).
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, React 19, TypeScript)
+- **Styling:** Tailwind CSS v4
+- **Database:** Supabase (PostgreSQL + Auth)
+- **Payments:** Stripe Checkout
+- **Email:** Resend with React Email templates
+- **Hosting:** Vercel
+
+## Features
+
+- Public marketing pages (homepage, summit, past events, sponsorship, contact)
+- 30+ field curated application form with 6 sections
+- Admin dashboard with 12 review statuses
+- Application approval workflow (complimentary, reduced-fee, paid)
+- Stripe checkout for paid registrations
+- Automated emails (application confirmation, admin notification, approval, payment confirmation)
+- Supabase Auth for admin access
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.local.example .env.local  # Add your keys
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-only) |
+| `STRIPE_SECRET_KEY` | Stripe secret key |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key |
+| `RESEND_API_KEY` | Resend API key |
+| `EMAIL_FROM` | Sender email address |
+| `ADMIN_EMAIL` | Admin notification recipient |
+| `NEXT_PUBLIC_APP_URL` | Site URL (used for email links) |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── (admin)/admin/     # Admin dashboard pages
+│   ├── (public)/          # Public marketing pages
+│   ├── admin/             # Admin login (outside admin layout)
+│   └── api/               # API routes (applications, webhooks, etc.)
+├── components/
+│   ├── admin/             # Admin UI components
+│   ├── forms/             # Application & contact forms
+│   ├── marketing/         # Header, footer, hero
+│   └── ui/                # Shared UI primitives
+├── lib/
+│   ├── email/             # Resend client & email templates
+│   ├── stripe/            # Stripe client & checkout
+│   └── supabase/          # Supabase clients (browser, server, admin)
+└── types/                 # TypeScript types & constants
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Migrations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Migrations are in `supabase/migrations/`. Run them in the Supabase SQL Editor:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `001_initial_schema.sql` — Base tables (applications, pricing_tiers, contact_submissions)
+2. `002_phase1_expansion.sql` — Expanded application fields, 12 statuses, sponsorship support
