@@ -18,8 +18,16 @@ export function Hero() {
               From Promise to Proof: The Legal Operating System for Healthcare AI
             </p>
             <p className="mt-6 max-w-2xl text-lg text-white/70">
-              The curated summit for the lawyers and leaders responsible for making
-              healthcare AI provable, governable, contractable, and trustworthy.
+              The curated summit for the lawyers and leaders responsible for
+              building the legal, governance, and trust infrastructure for
+              healthcare AI.
+            </p>
+            <p className="mt-4 max-w-2xl text-lg text-white/70">
+              DHC26 will focus on the practical work required to move healthcare
+              AI from promise to responsible deployment at scale: evidence of
+              value, AI governance, vendor contracting, liability allocation,
+              health data rights, product counsel, consumer-facing AI, and legal
+              operations.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link href="/apply">
