@@ -11,7 +11,7 @@ export function Hero() {
             <p className="text-sm font-semibold uppercase tracking-widest text-accent">
               December 2–3, 2026 &middot; Bell Harbor Conference Center, Seattle
             </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               DHC26 AI Summit
             </h1>
             <p className="mt-4 text-xl font-medium text-accent-light sm:text-2xl">
@@ -46,7 +46,7 @@ export function Hero() {
               alt="Digital Health Counsel"
               width={400}
               height={400}
-              className="rounded-2xl border border-white/15 shadow-2xl shadow-black/30"
+              className="w-56 h-56 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-2xl border border-white/15 shadow-2xl shadow-black/30"
               priority
             />
           </div>
