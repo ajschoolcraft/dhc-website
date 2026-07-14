@@ -111,6 +111,10 @@ function RemoveButton({ id }: { id: string }) {
     <form
       action={async () => {
         "use server";
+        const { createClient } = await import("@/lib/supabase/server");
+        const authClient = await createClient();
+        const { data: { user } } = await authClient.auth.getUser();
+        if (!user) return;
         const { createAdminClient } = await import("@/lib/supabase/admin");
         const supabase = createAdminClient();
         await supabase.from("featured_attendees").delete().eq("id", id);
