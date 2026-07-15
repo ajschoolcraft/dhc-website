@@ -2,9 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { AttendeeCard } from "@/components/marketing/attendee-card";
-import type { PublicAttendee } from "@/types";
 
 export const metadata: Metadata = {
   title: "DHC26 — 2026 Digital Health Counsel AI Summit",
@@ -30,10 +27,6 @@ export default async function Summit2026Page({
   searchParams: Promise<{ payment?: string }>;
 }) {
   const { payment } = await searchParams;
-
-  const supabase = createAdminClient();
-  const { data: attendeeData } = await supabase.rpc("get_public_attendees");
-  const attendees = (attendeeData ?? []) as PublicAttendee[];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
@@ -131,28 +124,6 @@ export default async function Summit2026Page({
           </p>
         </div>
       </section>
-
-      {attendees.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-text">Who&rsquo;s Attending</h2>
-          <p className="mt-2 text-text-light">
-            {attendees.length} confirmed attendee{attendees.length === 1 ? "" : "s"}
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {attendees.slice(0, 6).map((attendee, i) => (
-              <AttendeeCard key={i} attendee={attendee} />
-            ))}
-          </div>
-          {attendees.length > 6 && (
-            <Link
-              href="/attendees"
-              className="mt-6 inline-block text-sm font-medium text-accent hover:underline"
-            >
-              View all {attendees.length} attendees &rarr;
-            </Link>
-          )}
-        </section>
-      )}
 
       <div className="mt-8 flex flex-wrap gap-4">
         <Link href="/apply">
