@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
+import DHC2025Page from "./dhc-2025-page";
 
 type Speaker = { name: string; title: string; organization: string };
 
@@ -15,22 +16,13 @@ type EventData = {
 
 const events: Record<string, EventData> = {
   "dhc-2025": {
-    title: "DHC 2025",
-    date: "2025",
+    title: "DHC 2025 — Digital Health Counsel AI Summit",
+    date: "November 19–20, 2025",
     location: "Seattle, WA",
     description:
-      "The third annual Digital Health Counsel summit and our largest gathering to date. DHC 2025 brought together general counsel, product counsel, privacy leaders, legal operations leaders, AI governance leaders, regulators, academics, and technology executives for two days of focused programming on the legal and governance infrastructure required for healthcare AI.",
-    themes: [
-      "Health system AI governance frameworks",
-      "AI vendor diligence and procurement",
-      "Contracting for healthcare AI",
-      "Product counsel for digital health companies",
-      "Privacy, cybersecurity, and health data governance",
-      "AI for legal operations",
-    ],
-    speakers: [
-      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
-    ],
+      "The third annual Digital Health Counsel summit and our largest gathering to date, in collaboration with Ogden Murphy Wallace and Microsoft.",
+    themes: [],
+    speakers: [],
   },
   "microsoft-workshop-2025": {
     title: "Spring 2025 Microsoft Workshop",
@@ -123,6 +115,10 @@ export default async function EventPage({
   const event = events[slug];
 
   if (!event) notFound();
+
+  if (slug === "dhc-2025") {
+    return <DHC2025Page />;
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
