@@ -40,6 +40,7 @@ export const speakers: Record<string, Speaker> = {
     organization: "Microsoft Research Health Futures",
     bio: "Stephanie Simmons has nearly 30 years of experience as an attorney, regulatory professional, and strategic advisor to technology executives and research and incubation teams. In her current role as Director of Health AI Governance and Policy at Microsoft Research Health Futures, Stephanie is known for her ability to translate emerging legal and compliance requirements into actionable guidance for scientists and engineers, collaborating across disciplines to shape the future of AI in healthcare.",
     photo: "/images/speakers/dhc-2025/stephanie-simmons.jpg",
+    photoPosition: "center 30%",
   },
   "peter-lee": {
     id: "peter-lee",
@@ -57,6 +58,7 @@ export const speakers: Record<string, Speaker> = {
     organization: "Harvard Law School",
     bio: "Prof. Glenn Cohen is one of the world's leading experts on the intersection of bioethics (sometimes also called \"medical ethics\") and the law, as well as health law. He also teaches civil procedure. He has advised the U.S. Vice President on reproductive rights, discussed medical AI policy with members of the Korean Congress, and lectured to legal, medical, and industry conferences around the world. His work has been frequently covered by or appeared in PBS, NPR, ABC, NBC, CBS, CNN, MSNBC, Mother Jones, the New York Times, The Washington Post, the Boston Globe, and many other media venues.",
     photo: "/images/speakers/dhc-2025/glenn-cohen.jpg",
+    photoPosition: "0% top",
   },
   "julie-barnes": {
     id: "julie-barnes",
@@ -91,6 +93,7 @@ export const speakers: Record<string, Speaker> = {
     organization: "Ogden Murphy Wallace",
     bio: "Maddie Haller is a healthcare attorney with Ogden Murphy Wallace. She represents health centers, hospitals, and other clients in transactional matters of all types. She also regularly advises clients on regulatory and emerging issues relevant to healthcare organizations, including data privacy and AI governance.",
     photo: "/images/speakers/dhc-2025/ty-kayam.jpg",
+    photoPosition: "20% top",
   },
   "vardit-ravitsky": {
     id: "vardit-ravitsky",
