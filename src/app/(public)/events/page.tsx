@@ -12,6 +12,7 @@ const pastEvents = [
     title: "DHC 2025",
     date: "2025",
     location: "Seattle, WA",
+    coverImage: "/images/DHC25-cover-proto.jpg",
     summary:
       "Our largest gathering with speakers from health systems, regulators, AI companies, and law firms. Expanded tracks on AI governance, product counsel, and legal operations.",
   },

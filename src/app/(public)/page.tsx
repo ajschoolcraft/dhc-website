@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Hero } from "@/components/marketing/hero";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
@@ -43,6 +44,19 @@ export default function HomePage() {
           contracting, liability allocation, data rights, product counsel,
           consumer-facing AI, legal operations, and institutional trust.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+          <Image
+            src="/images/landing-page-photo.jpg"
+            alt="DHC 2025 summit — attendees and panelists during a session"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1152px) 100vw, 1152px"
+            priority
+          />
+        </div>
       </section>
 
       <section className="bg-surface">
