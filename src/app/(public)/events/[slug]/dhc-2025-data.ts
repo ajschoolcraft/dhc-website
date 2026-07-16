@@ -66,7 +66,7 @@ export const speakers: Record<string, Speaker> = {
     title: "Strategic Advisor",
     organization: "",
     bio: "Julie Barnes is a strategic advisor to organizations that need guidance about federal health policies and how to develop relationships with policymakers and influential advocacy organizations. As a former Capitol Hill staffer, health care attorney, and policy program director, Ms. Barnes informs business strategy in several healthcare arenas, including artificial intelligence, interoperability, data privacy, public and private health insurance and new payment models, and price transparency.",
-    photo: "/images/speakers/dhc-2025/julie-barnes.jpg",
+    photo: "/images/speakers/dhc-2025/maddie-haller.jpg",
   },
   "ty-kayam": {
     id: "ty-kayam",
@@ -75,7 +75,7 @@ export const speakers: Record<string, Speaker> = {
     title: "Regulatory and Transactional Attorney, Digital Health Center of Excellence",
     organization: "FDA",
     bio: "Ty Kayam is a regulatory and transactional attorney focused on digital health and artificial intelligence. She joined the FDA as the first attorney within the Digital Health Center of Excellence, where she leads legal and policy work on AI-enabled and digital health technologies. Her portfolio includes Predetermined Change Control Plans for AI-enabled medical devices, AI-related guidance development for both devices and drug development, postmarket monitoring frameworks, clinical decision support, and MDUFA digital-health commitments. She also supports cross-agency and international harmonization efforts through FDA's engagement with IMDRF and serves on the AI Council, helping shape the Center's policy approach to AI. Ty additionally provides review and drafting support on legislative and regulatory proposals affecting AI and digital health.",
-    photo: "/images/speakers/dhc-2025/ty-kayam.jpg",
+    photo: "/images/speakers/dhc-2025/rachel-gruner.jpg",
   },
   "rachel-gruner": {
     id: "rachel-gruner",
@@ -83,7 +83,7 @@ export const speakers: Record<string, Speaker> = {
     title: "Government Affairs Healthcare Lead",
     organization: "Microsoft AI",
     bio: "Rachel Gruner is a leading voice in the intersection of technology and healthcare policy, driven by a passion for leveraging innovation to improve health outcomes. She is currently the Government Affairs Healthcare Lead for Microsoft AI, where she plays a critical role in shaping policy and dialogue around the responsible and effective use of artificial intelligence in the health sector. Rachel brings a wealth of experience from both the public and private sectors. She spent a decade at the Department of Health and Human Services (HHS), holding key policy and leadership positions across the Centers for Disease Control and Prevention (CDC), the Surgeon General's Office, and the Office of the Assistant Secretary for Planning and Evaluation (ASPE). In these roles, she was instrumental in developing and implementing innovative health policies and programs.",
-    photo: "/images/speakers/dhc-2025/rachel-gruner.jpg",
+    photo: "/images/speakers/dhc-2025/julie-barnes.jpg",
   },
   "maddie-haller": {
     id: "maddie-haller",
@@ -92,7 +92,7 @@ export const speakers: Record<string, Speaker> = {
     title: "Healthcare Attorney",
     organization: "Ogden Murphy Wallace",
     bio: "Maddie Haller is a healthcare attorney with Ogden Murphy Wallace. She represents health centers, hospitals, and other clients in transactional matters of all types. She also regularly advises clients on regulatory and emerging issues relevant to healthcare organizations, including data privacy and AI governance.",
-    photo: "/images/speakers/dhc-2025/maddie-haller.jpg",
+    photo: "/images/speakers/dhc-2025/ty-kayam.jpg",
     photoPosition: "20% top",
   },
   "vardit-ravitsky": {
