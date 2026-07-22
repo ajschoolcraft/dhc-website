@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import DHC2023Page from "./dhc-2023-page";
 import DHC2024Page from "./dhc-2024-page";
 import DHC2025Page from "./dhc-2025-page";
+import MSWorkshop2025Page from "./ms-workshop-2025-page";
 
 type Speaker = { name: string; title: string; organization: string };
 
@@ -27,20 +28,13 @@ const events: Record<string, EventData> = {
     speakers: [],
   },
   "microsoft-workshop-2025": {
-    title: "Spring 2025 Microsoft Workshop",
-    date: "Spring 2025",
+    title: "Bridging Law and Innovation: Effective AI Collaborations in Biomedicine",
+    date: "March 14, 2025",
     location: "Microsoft Campus, Redmond, WA",
     description:
-      "An intensive workshop held in collaboration with Microsoft, bringing together healthcare AI leaders, enterprise technology strategists, and legal professionals. The workshop focused on responsible AI deployment in healthcare, enterprise governance frameworks, and practical strategies for managing AI risk at scale.",
-    themes: [
-      "Responsible AI in healthcare",
-      "Enterprise AI governance",
-      "Microsoft healthcare AI capabilities",
-      "AI risk management at scale",
-    ],
-    speakers: [
-      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
-    ],
+      "A half-day workshop held at the Microsoft campus in collaboration with Microsoft and Ogden Murphy Wallace, bringing together attorneys, clinicians, data scientists, researchers, compliance experts, and business leaders working in healthcare AI research and development.",
+    themes: [],
+    speakers: [],
   },
   "dhc-2024": {
     title: "DHC 2024",
@@ -121,6 +115,10 @@ export default async function EventPage({
 
   if (slug === "dhc-2025") {
     return <DHC2025Page />;
+  }
+
+  if (slug === "microsoft-workshop-2025") {
+    return <MSWorkshop2025Page />;
   }
 
   return (
