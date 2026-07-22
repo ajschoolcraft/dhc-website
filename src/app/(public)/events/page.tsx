@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const pastEvents = [
   {
     slug: "dhc-2025",
-    title: "DHC 2025",
+    title: "DHC25",
     date: "2025",
     location: "Seattle, WA",
     coverImage: "/images/DHC25-cover-proto.jpg",
@@ -26,7 +26,7 @@ const pastEvents = [
   },
   {
     slug: "dhc-2024",
-    title: "DHC 2024",
+    title: "DHC24",
     date: "2024",
     location: "Seattle, WA",
     summary:
@@ -34,7 +34,7 @@ const pastEvents = [
   },
   {
     slug: "dhc-2023",
-    title: "DHC 2023",
+    title: "DHC23",
     date: "September 2023",
     location: "Seattle, WA",
     summary:
