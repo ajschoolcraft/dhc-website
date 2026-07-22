@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
+import DHC2023Page from "./dhc-2023-page";
 import DHC2025Page from "./dhc-2025-page";
 
 type Speaker = { name: string; title: string; organization: string };
@@ -58,20 +59,13 @@ const events: Record<string, EventData> = {
     ],
   },
   "dhc-2023": {
-    title: "DHC 2023",
-    date: "2023",
+    title: "DHC 2023 — Advancing Medicine in the Age of AI",
+    date: "September 12–13, 2023",
     location: "Seattle, WA",
     description:
-      "The inaugural Digital Health Counsel summit brought together healthcare AI and legal leaders for focused discussions on the emerging legal infrastructure needed for healthcare AI adoption. DHC 2023 established the foundation for what has become a serious recurring convening platform.",
-    themes: [
-      "Healthcare AI legal landscape",
-      "AI governance foundations",
-      "Digital health contracting",
-      "Regulatory frameworks for healthcare AI",
-    ],
-    speakers: [
-      { name: "Speaker details", title: "Coming soon", organization: "Check back for updates" },
-    ],
+      "The inaugural Digital Health Counsel summit brought together healthcare AI and legal leaders for two days of focused programming on the emerging legal infrastructure needed for healthcare AI adoption.",
+    themes: [],
+    speakers: [],
   },
   "2025-summit": {
     title: "DHC 2025",
@@ -115,6 +109,10 @@ export default async function EventPage({
   const event = events[slug];
 
   if (!event) notFound();
+
+  if (slug === "dhc-2023") {
+    return <DHC2023Page />;
+  }
 
   if (slug === "dhc-2025") {
     return <DHC2025Page />;

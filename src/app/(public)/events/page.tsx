@@ -35,7 +35,7 @@ const pastEvents = [
   {
     slug: "dhc-2023",
     title: "DHC 2023",
-    date: "2023",
+    date: "September 2023",
     location: "Seattle, WA",
     summary:
       "Our inaugural summit convening healthcare AI and legal leaders. Established the foundation for Digital Health Counsel as a serious recurring convening platform.",
