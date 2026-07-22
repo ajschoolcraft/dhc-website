@@ -21,6 +21,7 @@ const pastEvents = [
     title: "Spring 2025 Microsoft Workshop",
     date: "Spring 2025",
     location: "Microsoft Campus, Redmond, WA",
+    coverImage: "/images/ms-workshop-2025-cover.jpg",
     summary:
       "An intensive workshop in collaboration with Microsoft exploring healthcare AI deployment, responsible AI frameworks, and enterprise governance strategies.",
   },
@@ -29,6 +30,7 @@ const pastEvents = [
     title: "DHC24",
     date: "2024",
     location: "Seattle, WA",
+    coverImage: "/images/DHC24-cover.png",
     summary:
       "Expanded to include product counsel, privacy, and AI governance tracks. Featured speakers from leading health systems, digital health companies, and regulatory bodies.",
   },
@@ -37,6 +39,7 @@ const pastEvents = [
     title: "DHC23",
     date: "September 2023",
     location: "Seattle, WA",
+    coverImage: "/images/DHC23-cover.jpg",
     summary:
       "Our inaugural summit convening healthcare AI and legal leaders. Established the foundation for Digital Health Counsel as a serious recurring convening platform.",
   },

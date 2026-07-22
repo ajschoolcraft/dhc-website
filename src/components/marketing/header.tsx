@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/apply", label: "Apply" },
   { href: "/sponsorship", label: "Sponsorship" },
   { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About" },
 ];
 
 export function Header() {

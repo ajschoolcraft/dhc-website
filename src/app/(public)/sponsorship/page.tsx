@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { Metadata } from "next";
 
 const pastSponsors = [
-  { name: "Ogden Murphy Wallace", logo: "/images/sponsors/ogden-murphy-wallace.png", width: 180, height: 160 },
+  { name: "Ogden Murphy Wallace", logo: "/images/sponsors/omw-logo-blue.png", width: 180, height: 160 },
   { name: "Microsoft", logo: "/images/sponsors/microsoft.png", width: 550, height: 120 },
   { name: "Milliman", logo: "/images/sponsors/milliman-logo.png", width: 260, height: 60 },
   { name: "Fenwick", logo: "/images/sponsors/fenwick-logo.png", width: 180, height: 180 },
