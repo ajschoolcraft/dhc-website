@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
 import DHC2023Page from "./dhc-2023-page";
+import DHC2024Page from "./dhc-2024-page";
 import DHC2025Page from "./dhc-2025-page";
 
 type Speaker = { name: string; title: string; organization: string };
@@ -112,6 +113,10 @@ export default async function EventPage({
 
   if (slug === "dhc-2023") {
     return <DHC2023Page />;
+  }
+
+  if (slug === "dhc-2024") {
+    return <DHC2024Page />;
   }
 
   if (slug === "dhc-2025") {
