@@ -1,6 +1,14 @@
+import Image from "next/image";
 import { SponsorInquiryForm } from "@/components/forms/sponsor-inquiry-form";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Metadata } from "next";
+
+const pastSponsors = [
+  { name: "Ogden Murphy Wallace", logo: "/images/sponsors/ogden-murphy-wallace.png", width: 180, height: 160 },
+  { name: "Microsoft", logo: "/images/sponsors/microsoft.png", width: 550, height: 120 },
+  { name: "Milliman", logo: "/images/sponsors/milliman-logo.png", width: 260, height: 60 },
+  { name: "Fenwick", logo: "/images/sponsors/fenwick-logo.png", width: 180, height: 180 },
+];
 
 export const metadata: Metadata = {
   title: "Sponsorship",
@@ -44,6 +52,26 @@ export default function SponsorshipPage() {
                 <p className="mt-1 text-sm text-text-light">{tier.description}</p>
               </CardContent>
             </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold text-text">Past Sponsors</h2>
+        <div className="mt-6 grid grid-cols-2 gap-6">
+          {pastSponsors.map((sponsor) => (
+            <div
+              key={sponsor.name}
+              className="flex items-center justify-center rounded-xl bg-surface p-10 h-48"
+            >
+              <Image
+                src={sponsor.logo}
+                alt={sponsor.name}
+                width={sponsor.width}
+                height={sponsor.height}
+                className="object-contain"
+              />
+            </div>
           ))}
         </div>
       </section>
