@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -44,6 +47,56 @@ export default function AboutPage() {
           disciplines, institutions, and sectors — and a shared commitment to
           turning innovation into responsible practice.
         </p>
+      </div>
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold text-text">Founder</h2>
+        <div className="mt-6 flex flex-col gap-6 sm:flex-row">
+          <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-xl">
+            <Image
+              src="/images/speakers/dhc-2024/dave-schoolcraft.jpg"
+              alt="Dave Schoolcraft"
+              fill
+              className="object-cover"
+              style={{ objectPosition: "center top" }}
+              sizes="192px"
+            />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-text">
+              Dave Schoolcraft<span className="font-normal text-text-light">, JD</span>
+            </h3>
+            <p className="text-sm text-accent">
+              Partner and Chair, Digital Health Team
+            </p>
+            <p className="text-sm text-text-light">Ogden Murphy Wallace</p>
+            <p className="mt-3 text-sm leading-relaxed text-text-light">
+              Dave Schoolcraft has worked for more than 25 years at the
+              intersection of health care, law, and all things digital. He is a
+              Partner and Chair of the Digital Health Team at the Ogden Murphy
+              Wallace law firm in Seattle. He provides strategic guidance to
+              health care provider organizations and technology companies seeking
+              to drive health system transformation. Dave has a national practice
+              advising clients on technology licensing, artificial intelligence,
+              data governance, health information privacy and security issues.
+              Dave is also the founder of the Digital Health Group, LLC which
+              produces collaborative events for those working on the next wave of
+              AI and data-driven innovation in health care.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-16 rounded-xl bg-surface p-8 text-center">
+        <h2 className="text-xl font-bold text-text">Get in Touch</h2>
+        <p className="mt-2 text-text-light">
+          Questions about DHC or interested in getting involved?
+        </p>
+        <div className="mt-4">
+          <Link href="/contact">
+            <Button>Contact Us</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
