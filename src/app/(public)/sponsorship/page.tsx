@@ -4,10 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { Metadata } from "next";
 
 const pastSponsors = [
-  { name: "Ogden Murphy Wallace", logo: "/images/sponsors/omw-logo-blue.png", width: 180, height: 160 },
+  { name: "Ogden Murphy Wallace", logo: "/images/sponsors/omw-logo-blue.png", width: 220, height: 220 }, // was 180x160
   { name: "Microsoft", logo: "/images/sponsors/microsoft.png", width: 550, height: 120 },
   { name: "Milliman", logo: "/images/sponsors/milliman-logo.png", width: 260, height: 60 },
-  { name: "Fenwick", logo: "/images/sponsors/fenwick-logo.png", width: 180, height: 180 },
+  { name: "Fenwick", logo: "/images/sponsors/fenwick-logo.png", width: 260, height: 60 }, // was 180x180
+  { name: "rGen", logo: "/images/sponsors/rGen_Logo.svg", width: 240, height: 95 },
+  { name: "Parker Smith & Feek", logo: "/images/sponsors/parker-smith-feek.png", width: 220, height: 200 },
 ];
 
 export const metadata: Metadata = {
@@ -28,18 +30,32 @@ const sponsorTiers = [
 export default function SponsorshipPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <div className="max-w-3xl">
-        <h1 className="text-3xl font-bold text-text">Sponsor DHC26</h1>
-        <p className="mt-4 text-text-light text-lg">
-          DHC26 brings together a curated audience of senior legal and governance
-          leaders from health systems, digital health companies, AI companies,
-          regulators, academics, law firms, insurers, consultants, and legal tech.
-        </p>
-        <p className="mt-4 text-text-light">
-          Sponsoring DHC26 is an opportunity to support serious education and
-          responsible healthcare AI adoption while engaging directly with the
-          decision-makers shaping the legal infrastructure for healthcare AI.
-        </p>
+      <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <div className="lg:flex-1">
+          <h1 className="text-3xl font-bold text-text">Sponsor DHC26</h1>
+          <p className="mt-4 text-text-light text-lg">
+            DHC26 brings together a curated audience of senior legal and governance
+            leaders from health systems, digital health companies, AI companies,
+            regulators, academics, law firms, insurers, consultants, and legal tech.
+          </p>
+          <p className="mt-4 text-text-light">
+            Sponsoring DHC26 is an opportunity to support serious education and
+            responsible healthcare AI adoption while engaging directly with the
+            decision-makers shaping the legal infrastructure for healthcare AI.
+          </p>
+        </div>
+        <div className="flex flex-col items-center lg:w-80 shrink-0">
+          <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-text-light">
+            Founding Sponsor:
+          </p>
+          <Image
+            src="/images/sponsors/omw-logo-blue.png"
+            alt="Ogden Murphy Wallace — Founding Sponsor"
+            width={240}
+            height={240}
+            className="object-contain"
+          />
+        </div>
       </div>
 
       <section className="mt-12">

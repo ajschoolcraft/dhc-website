@@ -30,20 +30,38 @@ export default function HomePage() {
       <Hero />
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 className="text-center text-3xl font-bold text-text">
-          About Digital Health Counsel
-        </h2>
-        <p className="mx-auto mt-4 max-w-3xl text-center text-text-light text-lg">
-          Digital Health Counsel is a convening platform for leaders working at
-          the intersection of healthcare, technology, artificial intelligence,
-          law, governance, privacy, data strategy, and innovation.
-        </p>
-        <p className="mx-auto mt-4 max-w-3xl text-center text-text-light">
-          Healthcare AI has moved beyond the question of whether the technology
-          is impressive. The next phase is about evidence, governance,
-          contracting, liability allocation, data rights, product counsel,
-          consumer-facing AI, legal operations, and institutional trust.
-        </p>
+        <div className="mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
+          <div className="lg:flex-1">
+            <h2 className="text-center text-3xl font-bold text-text">
+              About Digital Health Counsel
+            </h2>
+            <p className="mt-6 text-text-light text-lg">
+              Digital Health Counsel is a convening platform for leaders working at
+              the intersection of healthcare, technology, artificial intelligence,
+              law, governance, privacy, data strategy, and innovation.
+            </p>
+            <p className="mt-4 text-text-light">
+              Healthcare AI has moved beyond the question of whether the technology
+              is impressive. The next phase is about evidence, governance,
+              contracting, liability allocation, data rights, product counsel,
+              consumer-facing AI, legal operations, and institutional trust.
+            </p>
+          </div>
+          <div className="flex flex-col items-center lg:w-64 shrink-0">
+            <p className="text-sm font-semibold uppercase tracking-wider text-text-light">
+              Founding Sponsor:
+            </p>
+            <div className="mt-4">
+              <Image
+                src="/images/sponsors/omw-logo-blue.png"
+                alt="Ogden Murphy Wallace — Founding Sponsor"
+                width={200}
+                height={200}
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
