@@ -25,10 +25,6 @@ export default function ContactPage() {
             <a href="/sponsorship" className="text-accent hover:underline">
               sponsorship page
             </a>{" "}
-            or email us at{" "}
-            <a href="mailto:info@digitalhealthcounsel.com" className="text-accent hover:underline">
-              info@digitalhealthcounsel.com
-            </a>
           </p>
         </div>
       </div>

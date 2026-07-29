@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -53,22 +54,36 @@ export default async function Summit2026Page({
         </div>
       )}
 
-      <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-          December 2–3, 2026
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-text sm:text-4xl">
-          DHC26: The Legal Operating System for Healthcare AI
-        </h1>
-        <p className="mt-2 text-lg text-text-light">
-          Bell Harbor Conference Center, Seattle
-        </p>
-        <p className="mt-6 text-text-light">
-          Healthcare AI has moved beyond the question of whether the technology
-          is impressive. DHC26 is the curated summit for the lawyers and leaders
-          responsible for making healthcare AI provable, governable,
-          contractable, and trustworthy.
-        </p>
+      <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <div className="lg:flex-1">
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
+            December 2–3, 2026
+          </p>
+          <h1 className="mt-2 text-3xl font-bold text-text sm:text-4xl">
+            DHC26: The Legal Operating System for Healthcare AI
+          </h1>
+          <p className="mt-2 text-lg text-text-light">
+            Bell Harbor Conference Center, Seattle
+          </p>
+          <p className="mt-6 text-text-light">
+            Healthcare AI has moved beyond the question of whether the technology
+            is impressive. DHC26 is the curated summit for the lawyers and leaders
+            responsible for making healthcare AI provable, governable,
+            contractable, and trustworthy.
+          </p>
+        </div>
+        <div className="flex flex-col items-center lg:w-80 shrink-0">
+          <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-text-light">
+            Founding Sponsor:
+          </p>
+          <Image
+            src="/images/sponsors/omw-logo-blue.png"
+            alt="Ogden Murphy Wallace — Founding Sponsor"
+            width={240}
+            height={240}
+            className="object-contain"
+          />
+        </div>
       </div>
 
       <section className="mt-12">

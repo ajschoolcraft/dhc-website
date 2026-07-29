@@ -6,7 +6,7 @@ import Link from "next/link";
 const whyDhc26 = [
   { title: "AI Governance", description: "Frameworks for health system AI oversight, risk management, and institutional accountability." },
   { title: "Vendor Diligence & Contracting", description: "Practical approaches to evaluating, negotiating, and contracting with healthcare AI vendors." },
-  { title: "Liability & Allocation", description: "Emerging liability frameworks and allocation of responsibility across the AI value chain." },
+  { title: "Liability & Risk Allocation", description: "Emerging liability frameworks and allocation of responsibility across the AI value chain." },
   { title: "Evidence of Value", description: "Standards for substantiating clinical and operational claims made by AI-enabled products." },
   { title: "FDA, SaMD & CDS", description: "Regulatory pathways for software as a medical device and clinical decision support." },
   { title: "Health Data Rights & Privacy", description: "Data rights, de-identification, secondary use, and privacy in the age of model training." },
@@ -120,9 +120,9 @@ export default function HomePage() {
           </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {[
-              { name: "DHC 2023", desc: "Our inaugural summit convening healthcare AI and legal leaders." },
-              { name: "DHC 2024", desc: "Expanded to include product counsel, privacy, and AI governance tracks." },
-              { name: "DHC 2025", desc: "Our largest gathering with speakers from health systems, regulators, and AI companies." },
+              { name: "DHC23", desc: "Our inaugural summit convening healthcare AI and legal leaders." },
+              { name: "DHC24", desc: "Expanded to include product counsel, privacy, and AI governance tracks." },
+              { name: "DHC25", desc: "Our largest gathering with speakers from health systems, regulators, and AI companies." },
             ].map((event) => (
               <Card key={event.name}>
                 <CardContent>
