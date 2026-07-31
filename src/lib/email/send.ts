@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import type { ReactElement } from "react";
 
 type SendEmailParams = {
-  to: string;
+  to: string | string[];
   subject: string;
   react: ReactElement;
 };

@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     if (process.env.ADMIN_EMAIL) {
       try {
         await sendEmail({
-          to: process.env.ADMIN_EMAIL,
+          to: [process.env.ADMIN_EMAIL, process.env.FOUNDER_EMAIL].filter(Boolean) as string[],
           subject: `New DHC26 Application: ${body.first_name} ${body.last_name}`,
           react: AdminNotificationEmail({
             firstName: body.first_name,
