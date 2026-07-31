@@ -19,6 +19,12 @@ export default function ApplyPage() {
         available for selected in-house, government, academic, and nonprofit
         participants.
       </p>
+      <p className="mt-2 text-sm text-text-light">
+        Questions? Contact us at{" "}
+        <a href="mailto:info@digitalhealthcounsel.com" className="text-accent hover:underline">
+          info@digitalhealthcounsel.com
+        </a>
+      </p>
       <div className="mt-10">
         <ApplicationForm />
       </div>

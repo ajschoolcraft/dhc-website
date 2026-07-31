@@ -95,7 +95,10 @@ export default function SponsorshipPage() {
       <section className="mt-16 max-w-xl">
         <h2 className="text-2xl font-bold text-text">Submit Sponsor Inquiry</h2>
         <p className="mt-2 text-sm text-text-light">
-          Interested in sponsoring? Fill out the form below.
+          Interested in sponsoring? Fill out the form below or contact us at{" "}
+          <a href="mailto:info@digitalhealthcounsel.com" className="text-accent hover:underline">
+            info@digitalhealthcounsel.com
+          </a>
         </p>
         <div className="mt-8">
           <SponsorInquiryForm />

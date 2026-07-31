@@ -39,6 +39,10 @@ export function ApplicationReceivedEmail({ firstName }: Props) {
               Please note that submission does not guarantee attendance.
               Accepted applicants will receive registration details after review.
             </Text>
+            <Text style={{ fontSize: "14px", color: "#6c757d", lineHeight: "1.6" }}>
+              If you have any questions, please reach out to us at
+              info@digitalhealthcounsel.com.
+            </Text>
             <Text style={{ fontSize: "14px", color: "#6c757d", marginTop: "24px" }}>
               — Digital Health Counsel
             </Text>
