@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="bg-primary text-white mt-auto">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2">
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Digital Health Counsel
@@ -13,6 +13,14 @@ export function Footer() {
               A convening platform for leaders working at the intersection of
               healthcare, technology, AI, law, governance, privacy, data
               strategy, and innovation.
+            </p>
+            <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider">
+              Contact
+            </h3>
+            <p className="mt-2 text-sm text-white/60">
+              <a href="mailto:info@digitalhealthcounsel.com" className="hover:text-white">
+                info@digitalhealthcounsel.com
+              </a>
             </p>
           </div>
           <div>
@@ -49,18 +57,6 @@ export function Footer() {
                 <Link href="/about" className="text-sm text-white/60 hover:text-white">
                   About
                 </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider">
-              Contact
-            </h3>
-            <ul className="mt-2 space-y-2">
-              <li>
-                <a href="mailto:info@digitalhealthcounsel.com" className="text-sm text-white/60 hover:text-white">
-                  info@digitalhealthcounsel.com
-                </a>
               </li>
             </ul>
           </div>
