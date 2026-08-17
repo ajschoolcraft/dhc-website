@@ -68,15 +68,19 @@ export async function POST(request: NextRequest) {
 
     const tier = application.pricing_tiers;
 
-    await sendEmail({
-      to: application.email,
-      subject: "Payment Confirmed — 2026 DHC Summit Registration",
-      react: PaymentConfirmedEmail({
-        firstName: application.first_name,
-        tierName: tier?.name ?? "General",
-        amount: formatCents(tier?.price_cents ?? 0),
-      }),
-    });
+    try {
+      await sendEmail({
+        to: application.email,
+        subject: "Payment Confirmed — 2026 DHC Summit Registration",
+        react: PaymentConfirmedEmail({
+          firstName: application.first_name,
+          tierName: tier?.name ?? "General",
+          amount: formatCents(tier?.price_cents ?? 0),
+        }),
+      });
+    } catch (err) {
+      console.error(`Failed to send payment confirmation email to ${application.email}`, err);
+    }
   }
 
   return NextResponse.json({ received: true });
