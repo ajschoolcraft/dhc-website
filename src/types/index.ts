@@ -35,6 +35,8 @@ export type Application = {
   practical_experience: string | null;
   speaker_topic_proposal: string | null;
   registration_category: string | null;
+  dietary_restrictions: string[];
+  dietary_restrictions_other: string | null;
   reduced_fee_interest: boolean;
   consent_acknowledged: boolean;
   status: ApplicationStatus;
@@ -65,6 +67,8 @@ export type ApplicationFormData = {
   practical_experience: string;
   speaker_topic_proposal: string;
   registration_category: string;
+  dietary_restrictions: string[];
+  dietary_restrictions_other: string;
   reduced_fee_interest: boolean;
   consent_acknowledged: boolean;
 };
@@ -144,6 +148,15 @@ export const ROLE_CATEGORIES = [
   { value: "insurance_risk", label: "Insurance / broker / risk advisory" },
   { value: "consultant", label: "Consultant" },
   { value: "investor_vc", label: "Investor / venture capital" },
+  { value: "other", label: "Other" },
+] as const;
+
+export const DIETARY_RESTRICTIONS = [
+  { value: "vegetarian", label: "Vegetarian" },
+  { value: "vegan", label: "Vegan" },
+  { value: "kosher", label: "Kosher" },
+  { value: "halal", label: "Halal" },
+  { value: "gluten_free", label: "Gluten-free" },
   { value: "other", label: "Other" },
 ] as const;
 

@@ -11,6 +11,7 @@ import { formatDate } from "@/lib/utils";
 import {
   STATUS_LABELS,
   APPLICATION_TYPES,
+  DIETARY_RESTRICTIONS,
   ROLE_CATEGORIES,
   TOPIC_INTERESTS,
 } from "@/types";
@@ -141,6 +142,21 @@ export default function ApplicationDetailPage() {
             )}
           </div>
           <Detail label="Registration Category" value={application.registration_category?.replace(/_/g, " ") || "—"} />
+          <Detail
+            label="Dietary Restrictions"
+            value={
+              (application.dietary_restrictions ?? []).length > 0
+                ? [
+                    ...application.dietary_restrictions
+                      .filter((v) => v !== "other")
+                      .map((v) => DIETARY_RESTRICTIONS.find((d) => d.value === v)?.label ?? v),
+                    ...(application.dietary_restrictions.includes("other") && application.dietary_restrictions_other
+                      ? [`Other: ${application.dietary_restrictions_other}`]
+                      : []),
+                  ].join(", ")
+                : "None"
+            }
+          />
           <Detail label="Reduced Fee Interest" value={application.reduced_fee_interest ? "Yes" : "No"} />
         </CardContent>
       </Card>

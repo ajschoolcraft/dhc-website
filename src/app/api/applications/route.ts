@@ -48,6 +48,8 @@ export async function POST(request: NextRequest) {
         practical_experience: body.practical_experience || null,
         speaker_topic_proposal: body.speaker_topic_proposal || null,
         registration_category: body.registration_category || null,
+        dietary_restrictions: body.dietary_restrictions || [],
+        dietary_restrictions_other: body.dietary_restrictions_other || null,
         reduced_fee_interest: body.reduced_fee_interest || false,
         consent_acknowledged: body.consent_acknowledged,
       })

@@ -61,7 +61,15 @@ export default async function ApplicationsPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-text">Applications</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-text">Applications</h1>
+        <a
+          href="/api/applications/export"
+          className="rounded-lg bg-white border border-border px-4 py-2 text-sm font-medium text-text hover:bg-surface transition-colors"
+        >
+          Export CSV
+        </a>
+      </div>
 
       <div className="flex flex-wrap gap-2">
         {filters.map((f) => (

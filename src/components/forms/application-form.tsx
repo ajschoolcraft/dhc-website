@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import {
   APPLICATION_TYPES,
+  DIETARY_RESTRICTIONS,
   ROLE_CATEGORIES,
   TOPIC_INTERESTS,
 } from "@/types";
@@ -14,9 +15,16 @@ export function ApplicationForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [applicationTypes, setApplicationTypes] = useState<string[]>([]);
   const [topicInterests, setTopicInterests] = useState<string[]>([]);
+  const [dietaryRestrictions, setDietaryRestrictions] = useState<string[]>([]);
 
   function toggleApplicationType(value: string) {
     setApplicationTypes((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  }
+
+  function toggleDietary(value: string) {
+    setDietaryRestrictions((prev) =>
       prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
   }
@@ -68,6 +76,10 @@ export function ApplicationForm() {
       practical_experience: form.get("practical_experience") as string,
       speaker_topic_proposal: form.get("speaker_topic_proposal") as string,
       registration_category: form.get("registration_category") as string,
+      dietary_restrictions: dietaryRestrictions,
+      dietary_restrictions_other: dietaryRestrictions.includes("other")
+        ? (form.get("dietary_restrictions_other") as string)
+        : "",
       reduced_fee_interest: form.get("reduced_fee_interest") === "on",
       consent_acknowledged: true,
     };
@@ -267,6 +279,34 @@ export function ApplicationForm() {
             <option value="consultant_advisory">Consultant / advisory</option>
             <option value="other">Other</option>
           </select>
+        </div>
+
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-text">
+            Dietary Restrictions
+          </label>
+          <p className="text-sm text-text-light">Select all that apply:</p>
+          <div className="space-y-3">
+            {DIETARY_RESTRICTIONS.map((item) => (
+              <label key={item.value} className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={dietaryRestrictions.includes(item.value)}
+                  onChange={() => toggleDietary(item.value)}
+                  className="h-4 w-4 rounded border-border text-accent focus:ring-accent/20"
+                />
+                <span className="text-sm text-text">{item.label}</span>
+              </label>
+            ))}
+          </div>
+          {dietaryRestrictions.includes("other") && (
+            <Input
+              id="dietary_restrictions_other"
+              name="dietary_restrictions_other"
+              label="Please describe"
+              placeholder="e.g., nut allergy, dairy-free"
+            />
+          )}
         </div>
 
         <label className="flex items-start gap-3 cursor-pointer">
