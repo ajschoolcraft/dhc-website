@@ -2,9 +2,11 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  const isLoginPage = request.nextUrl.pathname === "/admin";
+  const pathname = request.nextUrl.pathname;
+  const isPublicRoute =
+    pathname === "/admin" || pathname === "/admin/reset-password";
 
-  if (isLoginPage) {
+  if (isPublicRoute) {
     return NextResponse.next();
   }
 
