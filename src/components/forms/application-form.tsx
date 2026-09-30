@@ -74,7 +74,6 @@ export function ApplicationForm() {
       current_role_description: form.get("current_role_description") as string,
       questions_to_explore: form.get("questions_to_explore") as string,
       practical_experience: form.get("practical_experience") as string,
-      speaker_topic_proposal: form.get("speaker_topic_proposal") as string,
       registration_category: form.get("registration_category") as string,
       dietary_restrictions: dietaryRestrictions,
       dietary_restrictions_other: dietaryRestrictions.includes("other")
@@ -247,14 +246,6 @@ export function ApplicationForm() {
           label="What practical experience would you be willing to share?"
           rows={4}
         />
-        {applicationTypes.includes("speak") && (
-          <Textarea
-            id="speaker_topic_proposal"
-            name="speaker_topic_proposal"
-            label="If applying to speak, what topic would you propose and what practical takeaways would attendees receive?"
-            rows={4}
-          />
-        )}
       </fieldset>
 
       {/* Section 6: Registration & Consent */}
@@ -331,7 +322,7 @@ export function ApplicationForm() {
             />
             <span className="text-sm text-text">
               I acknowledge that submitting this application does not guarantee
-              attendance or a speaking role. Accepted applicants will receive
+              attendance. Accepted applicants will receive
               registration details after review. Registration fees may vary by
               category. DHC may use submitted information for event planning and
               communications. Applicant information will not be sold.

@@ -127,7 +127,6 @@ export type SponsorInquiryFormData = {
 
 export const APPLICATION_TYPES = [
   { value: "attend", label: "Attend DHC26" },
-  { value: "speak", label: "Be considered as a speaker" },
   { value: "sponsor", label: "Sponsor or partner" },
   { value: "nominate", label: "Nominate someone else" },
 ] as const;
