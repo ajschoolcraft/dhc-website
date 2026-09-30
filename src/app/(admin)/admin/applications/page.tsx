@@ -49,7 +49,7 @@ export default async function ApplicationsPage({
 
   let query = supabase
     .from("applications")
-    .select("*")
+    .select("*, pricing_tiers(name, price_cents)")
     .order("created_at", { ascending: false });
 
   if (status) {
@@ -57,7 +57,9 @@ export default async function ApplicationsPage({
   }
 
   const { data } = await query;
-  const applications = (data ?? []) as Application[];
+  const applications = (data ?? []) as (Application & {
+    pricing_tiers: { name: string; price_cents: number } | null;
+  })[];
 
   return (
     <div className="space-y-6">

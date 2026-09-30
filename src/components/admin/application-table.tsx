@@ -8,12 +8,16 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Badge, statusBadgeVariant } from "@/components/ui/badge";
-import { formatDate } from "@/lib/utils";
+import { formatDate, formatCents } from "@/lib/utils";
 import { STATUS_LABELS } from "@/types";
 import type { Application } from "@/types";
 
+type ApplicationWithTier = Application & {
+  pricing_tiers: { name: string; price_cents: number } | null;
+};
+
 type ApplicationTableProps = {
-  applications: Application[];
+  applications: ApplicationWithTier[];
 };
 
 export function ApplicationTable({ applications }: ApplicationTableProps) {
@@ -34,6 +38,7 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
           <TableHead>Role</TableHead>
           <TableHead>Date</TableHead>
           <TableHead>Status</TableHead>
+          <TableHead>Pricing Tier</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -56,6 +61,18 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
               <Badge variant={statusBadgeVariant(app.status)}>
                 {STATUS_LABELS[app.status] ?? app.status}
               </Badge>
+            </TableCell>
+            <TableCell className="text-xs">
+              {app.pricing_tiers ? (
+                <span>
+                  {app.pricing_tiers.name}{" "}
+                  <span className="text-text-light">
+                    ({formatCents(app.pricing_tiers.price_cents)})
+                  </span>
+                </span>
+              ) : (
+                <span className="text-text-light">—</span>
+              )}
             </TableCell>
           </TableRow>
         ))}
