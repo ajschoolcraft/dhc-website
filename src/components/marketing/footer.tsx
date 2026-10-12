@@ -62,7 +62,12 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-white/40">
-          &copy; {new Date().getFullYear()} Digital Health Counsel. All rights reserved.
+          <p>&copy; {new Date().getFullYear()} Digital Health Counsel. All rights reserved.</p>
+          <p className="mt-2">
+            <Link href="/privacy" className="hover:text-white">
+              Privacy Policy
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
