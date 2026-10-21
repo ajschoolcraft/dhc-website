@@ -2,9 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactFormData } from "@/types";
 
+const MIN_SUBMIT_TIME_MS = 5_000;
+
 export async function POST(request: NextRequest) {
   try {
-    const body: ContactFormData = await request.json();
+    const body: ContactFormData & { _company_url?: string; _t?: number } =
+      await request.json();
+
+    if (body._company_url) {
+      return NextResponse.json({ success: true }, { status: 201 });
+    }
+
+    if (body._t && Date.now() - body._t < MIN_SUBMIT_TIME_MS) {
+      return NextResponse.json({ success: true }, { status: 201 });
+    }
 
     if (!body.name || !body.email || !body.message) {
       return NextResponse.json(

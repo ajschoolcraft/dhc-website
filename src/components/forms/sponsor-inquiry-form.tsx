@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 
@@ -18,6 +18,11 @@ const sponsorLevels = [
 export function SponsorInquiryForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const formLoadedAt = useRef(0);
+
+  useEffect(() => {
+    formLoadedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,6 +37,8 @@ export function SponsorInquiryForm() {
       phone: form.get("phone") as string,
       sponsor_level_interest: form.get("sponsor_level_interest") as string,
       message: form.get("message") as string,
+      _company_url: form.get("_company_url") as string,
+      _t: formLoadedAt.current,
     };
 
     try {
@@ -69,6 +76,10 @@ export function SponsorInquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <div aria-hidden="true" className="absolute -left-[9999px] -top-[9999px]">
+        <label htmlFor="_company_url">Company URL</label>
+        <input type="text" id="_company_url" name="_company_url" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         <Input id="name" name="name" label="Your Name" required />
         <Input id="email" name="email" type="email" label="Email" required />
