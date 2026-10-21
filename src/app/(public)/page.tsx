@@ -42,7 +42,8 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="bg-surface">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <h2 className="text-center text-3xl font-bold text-text">
           Speaker Spotlight
         </h2>
@@ -72,6 +73,7 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+      </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
