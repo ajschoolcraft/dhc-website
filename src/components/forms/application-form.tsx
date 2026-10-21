@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import {
@@ -16,6 +16,11 @@ export function ApplicationForm() {
   const [applicationTypes, setApplicationTypes] = useState<string[]>([]);
   const [topicInterests, setTopicInterests] = useState<string[]>([]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState<string[]>([]);
+  const formLoadedAt = useRef(0);
+
+  useEffect(() => {
+    formLoadedAt.current = Date.now();
+  }, []);
 
   function toggleApplicationType(value: string) {
     setApplicationTypes((prev) =>
@@ -81,6 +86,8 @@ export function ApplicationForm() {
         : "",
       reduced_fee_interest: form.get("reduced_fee_interest") === "on",
       consent_acknowledged: true,
+      _company_url: form.get("_company_url") as string,
+      _t: formLoadedAt.current,
     };
 
     try {
@@ -118,6 +125,10 @@ export function ApplicationForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
+      <div aria-hidden="true" className="absolute -left-[9999px] -top-[9999px]">
+        <label htmlFor="_company_url">Company URL</label>
+        <input type="text" id="_company_url" name="_company_url" tabIndex={-1} autoComplete="off" />
+      </div>
       {/* Section 1: Contact Information */}
       <fieldset className="space-y-6">
         <legend className="text-xl font-bold text-text border-b border-border pb-2 w-full">

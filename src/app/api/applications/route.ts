@@ -6,9 +6,20 @@ import { ApplicationReceivedEmail } from "@/lib/email/templates/application-rece
 import { AdminNotificationEmail } from "@/lib/email/templates/admin-notification";
 import type { ApplicationFormData } from "@/types";
 
+const MIN_SUBMIT_TIME_MS = 5_000;
+
 export async function POST(request: NextRequest) {
   try {
-    const body: ApplicationFormData = await request.json();
+    const body: ApplicationFormData & { _company_url?: string; _t?: number } =
+      await request.json();
+
+    if (body._company_url) {
+      return NextResponse.json({ id: "ok" }, { status: 201 });
+    }
+
+    if (body._t && Date.now() - body._t < MIN_SUBMIT_TIME_MS) {
+      return NextResponse.json({ id: "ok" }, { status: 201 });
+    }
 
     if (
       !body.first_name ||
