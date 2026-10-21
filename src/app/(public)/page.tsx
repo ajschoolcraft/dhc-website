@@ -3,6 +3,19 @@ import { Hero } from "@/components/marketing/hero";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
+const speakers: { name: string; title?: string; org?: string; photo: string; photoPosition?: string }[] = [
+  { name: "Prof. Glenn Cohen", title: "Deputy Dean", org: "Harvard Law School", photo: "/images/speakers/dhc-2026/glenn-cohen.jpg", photoPosition: "5% 35%" },
+  { name: "Joanne Kim", title: "Director of Products & Services", org: "VegaHealth", photo: "/images/speakers/dhc-2026/joannekim.jpg", photoPosition: "center 15%" },
+  { name: "Julie Barnes", title: "Co-founder & CEO", org: "Maverick Health Policy", photo: "/images/speakers/dhc-2026/julie-barnes.jpg", photoPosition: "45% 30%" },
+  { name: "Brendan Keeler", title: "Interoperability Practice Lead", org: "HTD", photo: "/images/speakers/dhc-2026/brendan-keeler.jpg", photoPosition: "center 25%" },
+  { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%" },
+  { name: "Jake Bernstein", title: "Global AI and Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%" },
+  { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg" },
+  { name: "Lucia C. Savage", title: "CEO", org: "Savage Healthcare Strategies", photo: "/images/speakers/dhc-2026/lucia2.jpg", photoPosition: "center 5%" },
+  { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%" },
+  { name: "Deven McGraw", title: "Chief Regulatory & Privacy Officer", org: "Citizen Health", photo: "/images/speakers/dhc-2026/deven-mcgraw.jpg", photoPosition: "20% 30%" },
+];
+
 const whyDhc26 = [
   { title: "AI Governance", description: "Frameworks for health system AI oversight, risk management, and institutional accountability." },
   { title: "Vendor Diligence & Contracting", description: "Practical approaches to evaluating, negotiating, and contracting with healthcare AI vendors." },
@@ -28,6 +41,38 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <h2 className="text-center text-3xl font-bold text-text">
+          Speaker Spotlight
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-text-light">
+          Confirmed speakers for DHC26 — more announcements coming soon.
+        </p>
+        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {speakers.map((speaker) => (
+            <div key={speaker.name} className="flex flex-col items-center text-center">
+              <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl border border-gray-100">
+                <Image
+                  src={speaker.photo}
+                  alt={speaker.name}
+                  fill
+                  className="object-cover"
+                  sizes="160px"
+                  style={speaker.photoPosition ? { objectPosition: speaker.photoPosition } : undefined}
+                />
+              </div>
+              <p className="mt-3 text-sm font-semibold text-text">{speaker.name}</p>
+              {speaker.title && (
+                <p className="mt-0.5 text-xs text-text-light">{speaker.title}</p>
+              )}
+              {speaker.org && (
+                <p className="mt-0.5 text-xs text-text-light">{speaker.org}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
