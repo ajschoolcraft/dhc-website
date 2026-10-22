@@ -1,37 +1,23 @@
-"use client";
-
-import { useEffect, useMemo, useReducer, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
+import { MarkReadButton } from "./mark-read-button";
 import type { ContactSubmission } from "@/types";
+import type { Metadata } from "next";
 
-export default function AdminContactPage() {
-  const supabase = useMemo(() => createClient(), []);
-  const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
-  const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
+export const metadata: Metadata = { title: "Contact Submissions — Admin" };
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    let cancelled = false;
-    supabase
-      .from("contact_submissions")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        if (data && !cancelled) setSubmissions(data as ContactSubmission[]);
-      });
-    return () => { cancelled = true; };
-  }, [supabase, refreshKey]);
+export default async function AdminContactPage() {
+  const supabase = createAdminClient();
 
-  async function markAsRead(id: string) {
-    await supabase
-      .from("contact_submissions")
-      .update({ read: true })
-      .eq("id", id);
-    refresh();
-  }
+  const { data } = await supabase
+    .from("contact_submissions")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  const submissions = (data ?? []) as ContactSubmission[];
 
   return (
     <div className="space-y-6">
@@ -59,15 +45,7 @@ export default function AdminContactPage() {
                     <span className="text-xs text-text-light">
                       {formatDate(sub.created_at)}
                     </span>
-                    {!sub.read && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => markAsRead(sub.id)}
-                      >
-                        Mark Read
-                      </Button>
-                    )}
+                    {!sub.read && <MarkReadButton id={sub.id} />}
                   </div>
                 </div>
                 <p className="mt-4 text-sm text-text whitespace-pre-wrap">
