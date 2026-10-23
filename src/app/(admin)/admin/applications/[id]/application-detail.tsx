@@ -34,6 +34,7 @@ export function ApplicationDetail({ application, tiers }: Props) {
   const [selectedStatus, setSelectedStatus] = useState<ApplicationStatus>(application.status);
   const [selectedTier, setSelectedTier] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [error, setError] = useState("");
 
   const needsTier = selectedStatus === "accepted_paid" || selectedStatus === "accepted_reduced";
@@ -65,6 +66,25 @@ export function ApplicationDetail({ application, tiers }: Props) {
       const data = await res.json();
       setError(data.error || "Something went wrong");
       setActionLoading(false);
+    }
+  }
+
+  async function handleDelete() {
+    setActionLoading(true);
+    setError("");
+
+    const res = await fetch(`/api/applications/${application.id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      router.push("/admin/applications");
+      router.refresh();
+    } else {
+      const data = await res.json();
+      setError(data.error || "Something went wrong");
+      setActionLoading(false);
+      setDeleteConfirm(false);
     }
   }
 
@@ -194,6 +214,39 @@ export function ApplicationDetail({ application, tiers }: Props) {
           >
             {actionLoading ? "Updating..." : "Update Status"}
           </Button>
+
+          <div className="border-t border-border pt-4 mt-4">
+            {deleteConfirm ? (
+              <div className="flex items-center gap-3">
+                <p className="text-sm text-red-600">Are you sure? This cannot be undone.</p>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={handleDelete}
+                  disabled={actionLoading}
+                >
+                  {actionLoading ? "Deleting..." : "Yes, Delete"}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setDeleteConfirm(false)}
+                  disabled={actionLoading}
+                >
+                  Cancel
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setDeleteConfirm(true)}
+                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+              >
+                Delete Application
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>
