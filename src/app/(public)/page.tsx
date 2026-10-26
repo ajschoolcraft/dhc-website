@@ -56,8 +56,8 @@ export default function HomePage() {
           Confirmed speakers for DHC26 — more announcements coming soon.
         </p>
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {speakers.map((speaker) => (
-            <div key={speaker.name} className="flex flex-col items-center text-center">
+          {speakers.map((speaker, i) => (
+            <div key={speaker.name} className={`flex flex-col items-center text-center${i === speakers.length - 1 && speakers.length % 2 === 1 ? " col-span-2 sm:col-span-1" : ""}`}>
               <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl border border-gray-100">
                 <Image
                   src={speaker.photo}
