@@ -29,7 +29,7 @@ export function Footer() {
             </h3>
             <ul className="mt-2 space-y-2">
               <li>
-                <Link href="/summit-2026" className="text-sm text-white/60 hover:text-white">
+                <Link href="/" className="text-sm text-white/60 hover:text-white">
                   DHC26
                 </Link>
               </li>

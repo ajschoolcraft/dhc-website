@@ -121,7 +121,7 @@ function RemoveButton({ id }: { id: string }) {
         const { revalidatePath } = await import("next/cache");
         revalidatePath("/admin/attendees");
         revalidatePath("/attendees");
-        revalidatePath("/summit-2026");
+        revalidatePath("/");
       }}
     >
       <button

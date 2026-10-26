@@ -35,8 +35,8 @@ export async function createCheckoutSession({
     metadata: {
       application_id: applicationId,
     },
-    success_url: `${appUrl}/summit-2026?payment=success`,
-    cancel_url: `${appUrl}/summit-2026?payment=cancelled`,
+    success_url: `${appUrl}/?payment=success`,
+    cancel_url: `${appUrl}/?payment=cancelled`,
   });
 
   return session.url!;

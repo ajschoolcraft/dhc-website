@@ -113,7 +113,7 @@ export default function DHC2025Page() {
           2026 at Bell Harbor Conference Center, Seattle.
         </p>
         <div className="mt-4 flex justify-center gap-4">
-          <Link href="/summit-2026">
+          <Link href="/">
             <Button>Learn About DHC26</Button>
           </Link>
           <Link href="/apply">

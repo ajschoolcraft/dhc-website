@@ -42,10 +42,37 @@ const whoShouldApply = [
   "Selected technology, insurance, consulting, and legal tech leaders with substantive experience in the space",
 ];
 
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ payment?: string }>;
+}) {
+  const { payment } = await searchParams;
+
   return (
     <>
       <Hero />
+
+      {payment === "success" && (
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+          <div className="rounded-xl bg-green-50 border border-green-200 p-6 text-center">
+            <h3 className="text-lg font-semibold text-green-800">Payment Confirmed</h3>
+            <p className="mt-2 text-sm text-green-700">
+              Thank you! Your registration is complete. You will receive a confirmation email shortly.
+            </p>
+          </div>
+        </div>
+      )}
+      {payment === "cancelled" && (
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+          <div className="rounded-xl bg-yellow-50 border border-yellow-200 p-6 text-center">
+            <h3 className="text-lg font-semibold text-yellow-800">Payment Cancelled</h3>
+            <p className="mt-2 text-sm text-yellow-700">
+              Your payment was not completed. You can use the link in your approval email to try again.
+            </p>
+          </div>
+        </div>
+      )}
 
       <section className="bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">

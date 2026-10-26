@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/summit-2026", label: "DHC26" },
+  { href: "/", label: "DHC26" },
   { href: "/events", label: "Past Summits" },
   { href: "/apply", label: "Apply" },
   { href: "/sponsorship", label: "Sponsorship" },
