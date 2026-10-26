@@ -3,17 +3,22 @@ import { Hero } from "@/components/marketing/hero";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
-const speakers: { name: string; title?: string; org?: string; photo: string; photoPosition?: string }[] = [
+const speakers: { name: string; title?: string; org?: string; photo: string; photoPosition?: string; logo?: string; logoClass?: string }[] = [
   { name: "Prof. Glenn Cohen", title: "Deputy Dean", org: "Harvard Law School", photo: "/images/speakers/dhc-2026/glenn-cohen.jpg", photoPosition: "5% 35%" },
-  { name: "Joanne Kim", title: "Director of Products & Services", org: "VegaHealth", photo: "/images/speakers/dhc-2026/joannekim.jpg", photoPosition: "center 15%" },
-  { name: "Julie Barnes", title: "Co-founder & CEO", org: "Maverick Health Policy", photo: "/images/speakers/dhc-2026/julie-barnes.jpg", photoPosition: "45% 30%" },
-  { name: "Brendan Keeler", title: "Interoperability Practice Lead", org: "HTD", photo: "/images/speakers/dhc-2026/brendan-keeler.jpg", photoPosition: "center 25%" },
-  { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%" },
-  { name: "Jake Bernstein", title: "Global AI and Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%" },
-  { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg" },
-  { name: "Lucia C. Savage", title: "CEO", org: "Savage Healthcare Strategies", photo: "/images/speakers/dhc-2026/lucia2.jpg", photoPosition: "center 5%" },
-  { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%" },
-  { name: "Deven McGraw", title: "Chief Regulatory & Privacy Officer", org: "Citizen Health", photo: "/images/speakers/dhc-2026/deven-mcgraw.jpg", photoPosition: "20% 30%" },
+  { name: "Joanne Kim", title: "Director of Products & Services", org: "VegaHealth", photo: "/images/speakers/dhc-2026/joannekim.jpg", photoPosition: "center 15%", logo: "/images/logos/speakers/vegahealth.png" },
+  { name: "Julie Barnes", title: "Co-founder & CEO", org: "Maverick Health Policy", photo: "/images/speakers/dhc-2026/julie-barnes.jpg", photoPosition: "45% 30%", logo: "/images/logos/speakers/maverick.png", logoClass: "h-10 max-w-[160px]" },
+  { name: "Brendan Keeler", title: "Interoperability Practice Lead", org: "HTD", photo: "/images/speakers/dhc-2026/brendan-keeler.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/htd.png" },
+  { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%", logo: "/images/logos/speakers/bwell.png" },
+  { name: "Jake Bernstein", title: "Global AI & Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/kl-gates.svg" },
+  { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg", logo: "/images/logos/speakers/gwu-transparent.png" },
+  { name: "Lucia C. Savage", title: "CEO", org: "Savage Healthcare Strategies", photo: "/images/speakers/dhc-2026/lucia2.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/savage-healthcare.svg", logoClass: "h-10 max-w-[150px]" },
+  { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/chai.png" },
+  { name: "Deven McGraw", title: "Chief Regulatory & Privacy Officer", org: "Citizen Health", photo: "/images/speakers/dhc-2026/deven-mcgraw.jpg", photoPosition: "20% 30%", logo: "/images/logos/speakers/citizen-health.png" },
+  { name: "Rachel Larrenaga", title: "General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
+  { name: "Laura Jantos", title: "Founder & CEO", org: "LDJ Consulting LLC", photo: "/images/speakers/dhc-2026/laura-jantos.jpg", photoPosition: "center 25%" },
+  { name: "Zach Boyd", title: "Director of the Office of AI", org: "State of Utah", photo: "/images/speakers/dhc-2026/zach-boyd.jpg", photoPosition: "center 15%", logo: "/images/logos/speakers/utah-ai-transparent.png" },
+  { name: "Merry-Ann Keane", title: "Superintendent & CEO", org: "Ocean Beach Health", photo: "/images/speakers/dhc-2026/merry-ann-keane.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/ocean-beach-health.png", logoClass: "h-11 max-w-[145px]" },
+  { name: "Ranjani Ramamurthy", title: "Physician-Engineer & Founder", org: "LLMED.AI", photo: "/images/speakers/dhc-2026/ranjani-ramamurthy.jpg", photoPosition: "center 30%", logo: "/images/logos/speakers/llmed-ai.png" },
 ];
 
 const whyDhc26 = [
@@ -60,54 +65,108 @@ export default function HomePage() {
                   fill
                   className="object-cover"
                   sizes="160px"
-                  style={speaker.photoPosition ? { objectPosition: speaker.photoPosition } : undefined}
+                  style={{
+                    ...(speaker.photoPosition ? { objectPosition: speaker.photoPosition } : {}),
+                  }}
                 />
               </div>
               <p className="mt-3 text-sm font-semibold text-text">{speaker.name}</p>
               {speaker.title && (
                 <p className="mt-0.5 text-xs text-text-light">{speaker.title}</p>
               )}
-              {speaker.org && (
-                <p className="mt-0.5 text-xs text-text-light">{speaker.org}</p>
-              )}
+              {speaker.logo ? (
+                <div className={`mt-auto pt-2 w-full ${speaker.logoClass ?? "h-10 max-w-[140px]"}`}>
+                  <Image
+                    src={speaker.logo}
+                    alt={speaker.org ?? ""}
+                    width={160}
+                    height={64}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+              ) : speaker.org ? (
+                <div className="mt-auto pt-2 flex h-10 max-w-[140px] flex-col items-center justify-center leading-tight">
+                  {speaker.org === "Harvard Law School" ? (
+                    <>
+                      <span className="text-xs font-bold tracking-wide text-text">Harvard</span>
+                      <span className="text-xs font-bold tracking-wide text-text">Law School</span>
+                    </>
+                  ) : speaker.org === "LDJ Consulting LLC" ? (
+                    <>
+                      <span className="text-xs font-bold tracking-wide text-text">LDJ</span>
+                      <span className="text-xs font-bold tracking-wide text-text">Consulting</span>
+                    </>
+                  ) : (
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-text-light/70">{speaker.org}</span>
+                  )}
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
       </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
-          <div className="lg:flex-1">
-            <h2 className="text-center text-3xl font-bold text-text">
-              About Digital Health Counsel
-            </h2>
-            <p className="mt-6 text-text-light text-lg">
-              Digital Health Counsel is a convening platform for leaders working at
-              the intersection of healthcare, technology, artificial intelligence,
-              law, governance, privacy, data strategy, and innovation.
-            </p>
-            <p className="mt-4 text-text-light">
-              Healthcare AI has moved beyond the question of whether the technology
-              is impressive. The next phase is about evidence, governance,
-              contracting, liability allocation, data rights, product counsel,
-              consumer-facing AI, legal operations, and institutional trust.
-            </p>
-          </div>
-          <div className="flex flex-col items-center lg:w-64 shrink-0">
-            <p className="text-sm font-semibold uppercase tracking-wider text-text-light">
-              Founding Sponsor:
-            </p>
-            <div className="mt-4">
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <p className="text-center text-sm font-semibold uppercase tracking-wider text-text-light">
+          DHC26 Sponsors
+        </p>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 items-end gap-10 sm:gap-8">
+          <div className="flex flex-col items-center">
+            <div className="flex h-[200px] items-center">
               <Image
-                src="/images/sponsors/omw-logo-blue.png"
-                alt="Ogden Murphy Wallace — Founding Sponsor"
-                width={200}
-                height={200}
+                src="/images/logos/sponsors/legora.png"
+                alt="Legora"
+                width={320}
+                height={60}
                 className="object-contain"
               />
             </div>
+            <p className="mt-3 text-xs font-medium text-text-light">Presenting Partner</p>
           </div>
+          <div className="flex flex-col items-center">
+            <div className="flex h-[200px] items-center">
+              <Image
+                src="/images/sponsors/omw-logo-blue.png"
+                alt="Ogden Murphy Wallace"
+                width={280}
+                height={280}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <p className="mt-3 text-xs font-medium text-text-light">Founding Sponsor</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="flex h-[200px] items-center">
+              <Image
+                src="/images/logos/sponsors/seattle-u-law.png"
+                alt="Seattle University School of Law"
+                width={300}
+                height={228}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <p className="mt-3 text-xs font-medium text-text-light">Principal Academic Sponsor</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <h2 className="text-center text-3xl font-bold text-text">
+            About Digital Health Counsel
+          </h2>
+          <p className="mt-6 text-text-light text-lg">
+            Digital Health Counsel is a convening platform for leaders working at
+            the intersection of healthcare, technology, artificial intelligence,
+            law, governance, privacy, data strategy, and innovation.
+          </p>
+          <p className="mt-4 text-text-light">
+            Healthcare AI has moved beyond the question of whether the technology
+            is impressive. The next phase is about evidence, governance,
+            contracting, liability allocation, data rights, product counsel,
+            consumer-facing AI, legal operations, and institutional trust.
+          </p>
         </div>
       </section>
 
