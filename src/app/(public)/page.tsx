@@ -73,6 +73,26 @@ export default async function HomePage({
           </div>
         </div>
       )}
+      {payment === "already_registered" && (
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+          <div className="rounded-xl bg-blue-50 border border-blue-200 p-6 text-center">
+            <h3 className="text-lg font-semibold text-blue-800">Already Registered</h3>
+            <p className="mt-2 text-sm text-blue-700">
+              Your payment has already been processed. We look forward to seeing you at DHC26!
+            </p>
+          </div>
+        </div>
+      )}
+      {payment === "invalid" && (
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+          <div className="rounded-xl bg-red-50 border border-red-200 p-6 text-center">
+            <h3 className="text-lg font-semibold text-red-800">Invalid Payment Link</h3>
+            <p className="mt-2 text-sm text-red-700">
+              This payment link is not valid. Please check your email for the correct link or contact us for help.
+            </p>
+          </div>
+        </div>
+      )}
 
       <section className="bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">

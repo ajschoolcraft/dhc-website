@@ -215,6 +215,29 @@ export function ApplicationDetail({ application, tiers }: Props) {
             {actionLoading ? "Updating..." : "Update Status"}
           </Button>
 
+          {(application.status === "accepted_paid" || application.status === "accepted_reduced") && (
+            <Button
+              variant="ghost"
+              onClick={async () => {
+                setActionLoading(true);
+                setError("");
+                const res = await fetch(`/api/applications/${application.id}/resend-payment`, {
+                  method: "POST",
+                });
+                if (res.ok) {
+                  alert("Payment link email resent successfully.");
+                } else {
+                  const data = await res.json();
+                  setError(data.error || "Failed to resend email");
+                }
+                setActionLoading(false);
+              }}
+              disabled={actionLoading}
+            >
+              {actionLoading ? "Sending..." : "Resend Payment Link"}
+            </Button>
+          )}
+
           <div className="border-t border-border pt-4 mt-4">
             {deleteConfirm ? (
               <div className="flex items-center gap-3">

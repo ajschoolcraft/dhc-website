@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { createCheckoutSession } from "@/lib/stripe/checkout";
 import { sendEmail } from "@/lib/email/send";
 import { ApprovalEmail } from "@/lib/email/templates/approval";
 import { formatCents } from "@/lib/utils";
@@ -78,12 +77,8 @@ export async function PATCH(
       );
     }
 
-    const paymentUrl = await createCheckoutSession({
-      applicationId: id,
-      applicantEmail: application.email,
-      tierName: tier.name,
-      priceCents: tier.price_cents,
-    });
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
+    const paymentUrl = `${appUrl}/pay/${id}`;
 
     const { error: updateError } = await admin
       .from("applications")
