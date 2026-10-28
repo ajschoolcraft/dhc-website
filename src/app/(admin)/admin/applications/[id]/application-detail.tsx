@@ -35,6 +35,7 @@ export function ApplicationDetail({ application, tiers }: Props) {
   const [selectedTier, setSelectedTier] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
 
   const needsTier = selectedStatus === "accepted_paid" || selectedStatus === "accepted_reduced";
@@ -216,26 +217,46 @@ export function ApplicationDetail({ application, tiers }: Props) {
           </Button>
 
           {(application.status === "accepted_paid" || application.status === "accepted_reduced") && (
-            <Button
-              variant="ghost"
-              onClick={async () => {
-                setActionLoading(true);
-                setError("");
-                const res = await fetch(`/api/applications/${application.id}/resend-payment`, {
-                  method: "POST",
-                });
-                if (res.ok) {
-                  alert("Payment link email resent successfully.");
-                } else {
-                  const data = await res.json();
-                  setError(data.error || "Failed to resend email");
-                }
-                setActionLoading(false);
-              }}
-              disabled={actionLoading}
-            >
-              {actionLoading ? "Sending..." : "Resend Payment Link"}
-            </Button>
+            <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-surface p-3">
+              <p className="text-xs font-medium uppercase tracking-wider text-text-light">Payment Link</p>
+              <code className="block w-full break-all rounded bg-white px-2 py-1 text-xs text-text border border-border">
+                {`${window.location.origin}/pay/${application.id}`}
+              </code>
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    navigator.clipboard.writeText(`${window.location.origin}/pay/${application.id}`);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                >
+                  {copied ? "Copied!" : "Copy Link"}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={async () => {
+                    setActionLoading(true);
+                    setError("");
+                    const res = await fetch(`/api/applications/${application.id}/resend-payment`, {
+                      method: "POST",
+                    });
+                    if (res.ok) {
+                      alert("Payment link email resent successfully.");
+                    } else {
+                      const data = await res.json();
+                      setError(data.error || "Failed to resend email");
+                    }
+                    setActionLoading(false);
+                  }}
+                  disabled={actionLoading}
+                >
+                  {actionLoading ? "Sending..." : "Resend via Email"}
+                </Button>
+              </div>
+            </div>
           )}
 
           <div className="border-t border-border pt-4 mt-4">
