@@ -51,10 +51,8 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero />
-
       {payment === "success" && (
-        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 pt-4 pb-2 sm:px-6">
           <div className="rounded-xl bg-green-50 border border-green-200 p-6 text-center">
             <h3 className="text-lg font-semibold text-green-800">Payment Confirmed</h3>
             <p className="mt-2 text-sm text-green-700">
@@ -64,7 +62,7 @@ export default async function HomePage({
         </div>
       )}
       {payment === "cancelled" && (
-        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 pt-4 pb-2 sm:px-6">
           <div className="rounded-xl bg-yellow-50 border border-yellow-200 p-6 text-center">
             <h3 className="text-lg font-semibold text-yellow-800">Payment Cancelled</h3>
             <p className="mt-2 text-sm text-yellow-700">
@@ -74,7 +72,7 @@ export default async function HomePage({
         </div>
       )}
       {payment === "already_registered" && (
-        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 pt-4 pb-2 sm:px-6">
           <div className="rounded-xl bg-blue-50 border border-blue-200 p-6 text-center">
             <h3 className="text-lg font-semibold text-blue-800">Already Registered</h3>
             <p className="mt-2 text-sm text-blue-700">
@@ -84,7 +82,7 @@ export default async function HomePage({
         </div>
       )}
       {payment === "invalid" && (
-        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 pt-4 pb-2 sm:px-6">
           <div className="rounded-xl bg-red-50 border border-red-200 p-6 text-center">
             <h3 className="text-lg font-semibold text-red-800">Invalid Payment Link</h3>
             <p className="mt-2 text-sm text-red-700">
@@ -93,6 +91,8 @@ export default async function HomePage({
           </div>
         </div>
       )}
+
+      <Hero />
 
       <section className="bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
