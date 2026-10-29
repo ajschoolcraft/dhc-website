@@ -17,8 +17,9 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Rachel Larrenaga", title: "General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
   { name: "Laura Jantos", title: "Founder & CEO", org: "LDJ Consulting LLC", photo: "/images/speakers/dhc-2026/laura-jantos.jpg", photoPosition: "center 25%" },
   { name: "Zach Boyd", title: "Director of the Office of AI", org: "State of Utah", photo: "/images/speakers/dhc-2026/zach-boyd.jpg", photoPosition: "center 15%", logo: "/images/logos/speakers/utah-ai-transparent.png" },
-  { name: "Merry-Ann Keane", title: "Superintendent & CEO", org: "Ocean Beach Health", photo: "/images/speakers/dhc-2026/merry-ann-keane.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/ocean-beach-health.png", logoClass: "h-11 max-w-[145px]" },
+  { name: "Mary-Ann Keane", title: "Superintendent & CEO", org: "Ocean Beach Health", photo: "/images/speakers/dhc-2026/merry-ann-keane.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/ocean-beach-health.png", logoClass: "h-11 max-w-[145px]" },
   { name: "Ranjani Ramamurthy", title: "Physician-Engineer & Founder", org: "LLMED.AI", photo: "/images/speakers/dhc-2026/ranjani-ramamurthy.jpg", photoPosition: "center 30%", logo: "/images/logos/speakers/llmed-ai.png" },
+  { name: "Mark Allen", title: "Senior Director of Legal Innovation", org: "Legora", photo: "/images/speakers/dhc-2026/mark-allen.png", photoPosition: "center 20%", logo: "/images/logos/sponsors/legora.png", logoClass: "h-8 max-w-[120px]" },
 ];
 
 const whyDhc26 = [
