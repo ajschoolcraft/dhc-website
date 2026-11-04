@@ -259,6 +259,29 @@ export function ApplicationDetail({ application, tiers }: Props) {
             </div>
           )}
 
+          {application.status === "registered" && (
+            <Button
+              variant="ghost"
+              onClick={async () => {
+                setActionLoading(true);
+                setError("");
+                const res = await fetch(`/api/applications/${application.id}/send-receipt`, {
+                  method: "POST",
+                });
+                if (res.ok) {
+                  alert("Receipt sent to attendee (CC: Alekhya).");
+                } else {
+                  const data = await res.json();
+                  setError(data.error || "Failed to send receipt");
+                }
+                setActionLoading(false);
+              }}
+              disabled={actionLoading}
+            >
+              {actionLoading ? "Sending..." : "Send Payment Receipt"}
+            </Button>
+          )}
+
           <div className="border-t border-border pt-4 mt-4">
             {deleteConfirm ? (
               <div className="flex items-center gap-3">
