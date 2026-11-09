@@ -102,7 +102,9 @@ export function ApplicationDetail({ application, tiers }: Props) {
           {application.first_name} {application.last_name}
         </h1>
         <Badge variant={statusBadgeVariant(application.status)}>
-          {STATUS_LABELS[application.status] ?? application.status}
+          {application.status === "registered" && !application.pricing_tier_id
+            ? "Registered — Complimentary"
+            : (STATUS_LABELS[application.status] ?? application.status)}
         </Badge>
       </div>
 

@@ -59,7 +59,9 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
             <TableCell>{formatDate(app.created_at)}</TableCell>
             <TableCell>
               <Badge variant={statusBadgeVariant(app.status)}>
-                {STATUS_LABELS[app.status] ?? app.status}
+                {app.status === "registered" && !app.pricing_tier_id
+                  ? "Registered — Complimentary"
+                  : (STATUS_LABELS[app.status] ?? app.status)}
               </Badge>
             </TableCell>
             <TableCell className="text-xs">
@@ -70,6 +72,8 @@ export function ApplicationTable({ applications }: ApplicationTableProps) {
                     ({formatCents(app.pricing_tiers.price_cents)})
                   </span>
                 </span>
+              ) : app.status === "registered" ? (
+                <span className="text-text-light">Complimentary</span>
               ) : (
                 <span className="text-text-light">—</span>
               )}

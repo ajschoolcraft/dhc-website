@@ -41,21 +41,21 @@ export async function POST(
   }
 
   const tier = application.pricing_tiers;
-  if (!tier) {
-    return NextResponse.json({ error: "No pricing tier found" }, { status: 400 });
-  }
+  const isComplimentary = !tier;
 
   try {
     await sendEmail({
       to: application.email,
       cc: "akondepudi@omwlaw.com",
-      subject: "Payment Receipt — 2026 DHC Summit Registration",
+      subject: isComplimentary
+        ? "Registration Confirmation — 2026 DHC Summit"
+        : "Payment Receipt — 2026 DHC Summit Registration",
       react: PaymentReceiptEmail({
         firstName: application.first_name,
         lastName: application.last_name,
         organization: application.organization,
-        tierName: tier.name,
-        amount: formatCents(tier.price_cents),
+        tierName: isComplimentary ? "Complimentary" : tier.name,
+        amount: isComplimentary ? "Complimentary" : formatCents(tier.price_cents),
         paidAt: formatDate(application.paid_at),
       }),
     });
