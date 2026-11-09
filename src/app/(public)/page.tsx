@@ -21,6 +21,9 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Merry-Ann Keane", title: "Superintendent & CEO", org: "Ocean Beach Health", photo: "/images/speakers/dhc-2026/merry-ann-keane.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/ocean-beach-health.png", logoClass: "h-11 max-w-[145px]" },
   { name: "Ranjani Ramamurthy", title: "Physician-Engineer & Founder", org: "LLMED.AI", photo: "/images/speakers/dhc-2026/ranjani-ramamurthy.jpg", photoPosition: "center 30%", logo: "/images/logos/speakers/llmed-ai.png" },
   { name: "Mark Allen", title: "Senior Director of Legal Innovation", org: "Legora", photo: "/images/speakers/dhc-2026/mark-allen.png", photoPosition: "center 20%", logo: "/images/logos/sponsors/legora.png", logoClass: "h-8 max-w-[120px]" },
+  { name: "David W. Johnson", title: "CEO", org: "4sight Health", photo: "/images/speakers/dhc-2026/david-johnson.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/4sight-health.png", logoClass: "h-8 max-w-[140px]" },
+  { name: "Martin Kang", title: "Senior Director, AI Product Management", org: "Danaher", photo: "/images/speakers/dhc-2026/martin-kang.png", photoPosition: "center 15%", logo: "/images/logos/speakers/danaher.png" },
+  { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft AI", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft-ai.png" },
 ];
 
 const whyDhc26 = [
