@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
 const speakers: { name: string; title?: string; org?: string; photo: string; photoPosition?: string; logo?: string; logoClass?: string }[] = [
+  { name: "Byron Crowe", title: "Chief Medical Officer", org: "doctronic", photo: "/images/speakers/dhc-2026/byron-crowe.png", photoPosition: "center 20%", logo: "/images/logos/speakers/doctronic.png" },
   { name: "Prof. Glenn Cohen", title: "Deputy Dean", org: "Harvard Law School", photo: "/images/speakers/dhc-2026/glenn-cohen.jpg", photoPosition: "5% 35%" },
   { name: "Joanne Kim", title: "Director of Products & Services", org: "VegaHealth", photo: "/images/speakers/dhc-2026/joannekim.jpg", photoPosition: "center 15%", logo: "/images/logos/speakers/vegahealth.png" },
   { name: "Julie Barnes", title: "Co-founder & CEO", org: "Maverick Health Policy", photo: "/images/speakers/dhc-2026/julie-barnes.jpg", photoPosition: "45% 30%", logo: "/images/logos/speakers/maverick.png", logoClass: "h-10 max-w-[160px]" },
