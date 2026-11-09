@@ -119,8 +119,9 @@ export async function PATCH(
     const { error: updateError } = await admin
       .from("applications")
       .update({
-        status,
+        status: "registered",
         reviewed_at: new Date().toISOString(),
+        paid_at: new Date().toISOString(),
       })
       .eq("id", id);
 
@@ -145,7 +146,7 @@ export async function PATCH(
       console.error(`Failed to send approval email to ${application.email}`);
     }
 
-    return NextResponse.json({ status, emailSent });
+    return NextResponse.json({ status: "registered", emailSent });
   }
 
   // All other status changes
