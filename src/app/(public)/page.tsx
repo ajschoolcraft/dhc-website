@@ -24,6 +24,20 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "David W. Johnson", title: "CEO", org: "4sight Health", photo: "/images/speakers/dhc-2026/david-johnson.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/4sight-health.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Martin Kang", title: "Senior Director, AI Product Management", org: "Danaher", photo: "/images/speakers/dhc-2026/martin-kang.png", photoPosition: "center 15%", logo: "/images/logos/speakers/danaher.png" },
   { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft AI", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft-ai.png" },
+  { name: "Aden Klein", title: "VP Product & Policy", org: "Vega Health", photo: "/images/speakers/dhc-2026/aden-klein.png", photoPosition: "center 20%", logo: "/images/logos/speakers/vegahealth.png" },
+  { name: "Bob Rapp", title: "Co-Founder", org: "AIGovOps Foundation", photo: "/images/speakers/dhc-2026/bob-rapp.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/aigovops-foundation.png", logoClass: "h-14 max-w-[160px]" },
+  { name: "Jessica Jensen", title: "Managing Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/jessica-jensen.jpg", photoPosition: "80% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Lee Kuo", title: "Healthcare Attorney", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Mag Larrain", title: "Associate Attorney", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/mag-larrain.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Laura Szkolar Sienkiewicz", title: "Sr. Director, Data Governance & Regulation", org: "Microsoft", photo: "/images/speakers/dhc-2026/laura-szkolar-sienkiewicz.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
+  { name: "Casey Moriarty", title: "Attorney", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/casey-moriarty.jpg", photoPosition: "75% 25%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Rachel Schilling", title: "Principal", org: "Rock Health", photo: "/images/speakers/dhc-2026/rachel-schilling.png", photoPosition: "center 20%", logo: "/images/logos/speakers/rock-health.svg", logoClass: "h-11 max-w-[150px]" },
+  { name: "David Schoolcraft", title: "Partner", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Matthew Soskins", title: "Senior Counsel", org: "CommonSpirit Health", photo: "/images/speakers/dhc-2026/matthew-soskins.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/commonspirit.svg", logoClass: "h-10 max-w-[180px]" },
+  { name: "Emily Schlesinger", title: "Assistant General Counsel, Cloud + AI", org: "Microsoft", photo: "/images/speakers/dhc-2026/emily-schlesinger.png", photoPosition: "center 15%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
+  { name: "Wendy Rubas", title: "Chief Legal & Compliance Officer", org: "Innovaccer", photo: "/images/speakers/dhc-2026/wendy-rubas.png", photoPosition: "center 20%", logo: "/images/logos/speakers/innovaccer.png", logoClass: "h-8 max-w-[150px]" },
+  { name: "Joe Braidwood", title: "Founder & CEO", org: "Glacis Technologies", photo: "/images/speakers/dhc-2026/joe-braidwood.png", photoPosition: "center 20%", logo: "/images/logos/speakers/glacis.png", logoClass: "h-9 max-w-[140px]" },
+  { name: "René Quashie", title: "VP, Digital Health", org: "Consumer Technology Association", photo: "/images/speakers/dhc-2026/rene-quashie.png", photoPosition: "center 15%", logo: "/images/logos/speakers/cta.png", logoClass: "h-10 max-w-[150px]" },
 ];
 
 const whyDhc26 = [
@@ -127,17 +141,17 @@ export default async function HomePage({
                 <p className="mt-0.5 text-xs text-text-light">{speaker.title}</p>
               )}
               {speaker.logo ? (
-                <div className={`mt-auto pt-2 w-full ${speaker.logoClass ?? "h-10 max-w-[140px]"}`}>
+                <div className="mt-auto pt-2 flex h-20 w-full items-center justify-center">
                   <Image
                     src={speaker.logo}
                     alt={speaker.org ?? ""}
                     width={160}
                     height={64}
-                    className="h-full w-full object-contain"
+                    className={`w-full object-contain ${speaker.logoClass ?? "h-10 max-w-[140px]"}`}
                   />
                 </div>
               ) : speaker.org ? (
-                <div className="mt-auto pt-2 flex h-10 max-w-[140px] flex-col items-center justify-center leading-tight">
+                <div className="mt-auto pt-2 flex h-20 max-w-[140px] flex-col items-center justify-center leading-tight">
                   {speaker.org === "Harvard Law School" ? (
                     <>
                       <span className="text-xs font-bold tracking-wide text-text">Harvard</span>
