@@ -19,8 +19,8 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Brendan Keeler", title: "Interoperability Practice Lead", org: "HTD", photo: "/images/speakers/dhc-2026/brendan-keeler.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/htd.png" },
   // Row 3
   { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/chai.png" },
-  { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft AI", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft-ai.png" },
-  { name: "David Schoolcraft", title: "Partner", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
+  { name: "David Schoolcraft", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
   { name: "Wendy Rubas", title: "Chief Legal & Compliance Officer", org: "Innovaccer", photo: "/images/speakers/dhc-2026/wendy-rubas.png", photoPosition: "center 20%", logo: "/images/logos/speakers/innovaccer.png", logoClass: "h-8 max-w-[150px]" },
   { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg", logo: "/images/logos/speakers/gwu-transparent.png" },
   { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%", logo: "/images/logos/speakers/bwell.png" },
@@ -30,10 +30,10 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Rachel Schilling", title: "Principal", org: "Rock Health", photo: "/images/speakers/dhc-2026/rachel-schilling.png", photoPosition: "center 20%", logo: "/images/logos/speakers/rock-health.svg", logoClass: "h-11 max-w-[150px]" },
   { name: "Matthew Soskins", title: "Senior Counsel", org: "CommonSpirit Health", photo: "/images/speakers/dhc-2026/matthew-soskins.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/commonspirit.svg", logoClass: "h-10 max-w-[180px]" },
   { name: "Laura Szkolar Sienkiewicz", title: "Sr. Director, Data Governance & Regulation", org: "Microsoft", photo: "/images/speakers/dhc-2026/laura-szkolar-sienkiewicz.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
-  { name: "Casey Moriarty", title: "Attorney", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/casey-moriarty.jpg", photoPosition: "75% 25%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Casey Moriarty", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/casey-moriarty.jpg", photoPosition: "75% 25%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
   // Row 5
   { name: "David W. Johnson", title: "CEO", org: "4sight Health", photo: "/images/speakers/dhc-2026/david-johnson.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/4sight-health.png", logoClass: "h-8 max-w-[140px]" },
-  { name: "Lee Kuo", title: "Healthcare Attorney", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Lee Kuo", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
   { name: "Mark Allen", title: "Senior Director of Legal Innovation", org: "Legora", photo: "/images/speakers/dhc-2026/mark-allen.png", photoPosition: "center 20%", logo: "/images/logos/sponsors/legora.png", logoClass: "h-8 max-w-[120px]" },
   { name: "Rachel Larrenaga", title: "General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
   { name: "Martin Kang", title: "Senior Director, AI Product Management", org: "Danaher", photo: "/images/speakers/dhc-2026/martin-kang.png", photoPosition: "center 15%", logo: "/images/logos/speakers/danaher.png" },
@@ -65,6 +65,54 @@ const whoShouldApply = [
   "Regulators, academics, and policy leaders",
   "Selected technology, insurance, consulting, and legal tech leaders with substantive experience in the space",
 ];
+
+function SpeakerCard({ speaker, className }: { speaker: typeof speakers[number]; className?: string }) {
+  return (
+    <div className={`flex flex-col items-center text-center${className ? ` ${className}` : ""}`}>
+      <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl border border-gray-100">
+        <Image
+          src={speaker.photo}
+          alt={speaker.name}
+          fill
+          className="object-cover"
+          sizes="160px"
+          style={speaker.photoPosition ? { objectPosition: speaker.photoPosition } : undefined}
+        />
+      </div>
+      <p className="mt-3 text-sm font-semibold text-text">{speaker.name}</p>
+      {speaker.title && (
+        <p className="mt-0.5 text-xs text-text-light">{speaker.title}</p>
+      )}
+      {speaker.logo ? (
+        <div className="mt-auto pt-2 flex h-20 w-full items-center justify-center">
+          <Image
+            src={speaker.logo}
+            alt={speaker.org ?? ""}
+            width={160}
+            height={64}
+            className={`w-full object-contain ${speaker.logoClass ?? "h-10 max-w-[140px]"}`}
+          />
+        </div>
+      ) : speaker.org ? (
+        <div className="mt-auto pt-2 flex h-20 max-w-[140px] flex-col items-center justify-center leading-tight">
+          {speaker.org === "Harvard Law School" ? (
+            <>
+              <span className="text-xs font-bold tracking-wide text-text">Harvard</span>
+              <span className="text-xs font-bold tracking-wide text-text">Law School</span>
+            </>
+          ) : speaker.org === "LDJ Consulting LLC" ? (
+            <>
+              <span className="text-xs font-bold tracking-wide text-text">LDJ</span>
+              <span className="text-xs font-bold tracking-wide text-text">Consulting</span>
+            </>
+          ) : (
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-text-light/70">{speaker.org}</span>
+          )}
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export default async function HomePage({
   searchParams,
@@ -126,63 +174,17 @@ export default async function HomePage({
         <p className="mx-auto mt-4 max-w-2xl text-center text-text-light">
           Confirmed speakers for DHC26 — more announcements coming soon.
         </p>
-        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-          <div className="hidden lg:flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white/60 p-4">
-            <Image
-              src="/images/dhc-logo.jpeg"
-              alt="Digital Health Counsel"
-              width={140}
-              height={140}
-              className="rounded-xl object-contain"
-            />
+        <div className="mt-12 space-y-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:flex lg:justify-center lg:gap-6">
+            {speakers.slice(0, 5).map((speaker, i) => (
+              <SpeakerCard key={speaker.name} speaker={speaker} className={`${i === 4 ? "col-span-2 sm:col-span-1" : ""} lg:w-[calc((100%-120px)/6)]`} />
+            ))}
           </div>
-          {speakers.map((speaker, i) => (
-            <div key={speaker.name} className={`flex flex-col items-center text-center${i === speakers.length - 1 && speakers.length % 2 === 1 ? " col-span-2 sm:col-span-1" : ""}${i === speakers.length - 4 ? " lg:col-start-2" : ""}`}>
-              <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl border border-gray-100">
-                <Image
-                  src={speaker.photo}
-                  alt={speaker.name}
-                  fill
-                  className="object-cover"
-                  sizes="160px"
-                  style={{
-                    ...(speaker.photoPosition ? { objectPosition: speaker.photoPosition } : {}),
-                  }}
-                />
-              </div>
-              <p className="mt-3 text-sm font-semibold text-text">{speaker.name}</p>
-              {speaker.title && (
-                <p className="mt-0.5 text-xs text-text-light">{speaker.title}</p>
-              )}
-              {speaker.logo ? (
-                <div className="mt-auto pt-2 flex h-20 w-full items-center justify-center">
-                  <Image
-                    src={speaker.logo}
-                    alt={speaker.org ?? ""}
-                    width={160}
-                    height={64}
-                    className={`w-full object-contain ${speaker.logoClass ?? "h-10 max-w-[140px]"}`}
-                  />
-                </div>
-              ) : speaker.org ? (
-                <div className="mt-auto pt-2 flex h-20 max-w-[140px] flex-col items-center justify-center leading-tight">
-                  {speaker.org === "Harvard Law School" ? (
-                    <>
-                      <span className="text-xs font-bold tracking-wide text-text">Harvard</span>
-                      <span className="text-xs font-bold tracking-wide text-text">Law School</span>
-                    </>
-                  ) : speaker.org === "LDJ Consulting LLC" ? (
-                    <>
-                      <span className="text-xs font-bold tracking-wide text-text">LDJ</span>
-                      <span className="text-xs font-bold tracking-wide text-text">Consulting</span>
-                    </>
-                  ) : (
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-text-light/70">{speaker.org}</span>
-                  )}
-                </div>
-              ) : null}
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+            {speakers.slice(5).map((speaker, i) => (
+              <SpeakerCard key={speaker.name} speaker={speaker} className={i === 24 ? "lg:col-start-2" : undefined} />
+            ))}
+          </div>
         </div>
       </div>
       </section>
