@@ -42,7 +42,7 @@ export function Hero() {
           </div>
           <div className="flex-shrink-0">
             <Image
-              src="/images/dhc-logo.jpeg"
+              src="/images/dhc-logo.png"
               alt="Digital Health Counsel"
               width={400}
               height={400}

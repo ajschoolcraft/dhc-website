@@ -21,7 +21,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/dhc-logo.jpeg"
+            src="/images/dhc-logo.png"
             alt="Digital Health Counsel"
             width={40}
             height={40}
