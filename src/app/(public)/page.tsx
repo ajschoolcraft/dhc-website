@@ -20,7 +20,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   // Row 3
   { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/chai.png" },
   { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
-  { name: "David Schoolcraft", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "David Schoolcraft", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Wendy Rubas", title: "Chief Legal & Compliance Officer", org: "Innovaccer", photo: "/images/speakers/dhc-2026/wendy-rubas.png", photoPosition: "center 20%", logo: "/images/logos/speakers/innovaccer.png", logoClass: "h-8 max-w-[150px]" },
   { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg", logo: "/images/logos/speakers/gwu-transparent.png" },
   { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%", logo: "/images/logos/speakers/bwell.png" },
@@ -30,17 +30,17 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Rachel Schilling", title: "Principal", org: "Rock Health", photo: "/images/speakers/dhc-2026/rachel-schilling.png", photoPosition: "center 20%", logo: "/images/logos/speakers/rock-health.svg", logoClass: "h-11 max-w-[150px]" },
   { name: "Matthew Soskins", title: "Senior Counsel", org: "CommonSpirit Health", photo: "/images/speakers/dhc-2026/matthew-soskins.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/commonspirit.svg", logoClass: "h-10 max-w-[180px]" },
   { name: "Laura Szkolar Sienkiewicz", title: "Sr. Director, Data Governance & Regulation", org: "Microsoft", photo: "/images/speakers/dhc-2026/laura-szkolar-sienkiewicz.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
-  { name: "Casey Moriarty", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/casey-moriarty.jpg", photoPosition: "75% 25%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Casey Moriarty", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/casey-moriarty.jpg", photoPosition: "75% 25%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   // Row 5
   { name: "David W. Johnson", title: "CEO", org: "4sight Health", photo: "/images/speakers/dhc-2026/david-johnson.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/4sight-health.png", logoClass: "h-8 max-w-[140px]" },
-  { name: "Lee Kuo", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Lee Kuo", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Mark Allen", title: "Senior Director of Legal Innovation", org: "Legora", photo: "/images/speakers/dhc-2026/mark-allen.png", photoPosition: "center 20%", logo: "/images/logos/sponsors/legora.png", logoClass: "h-8 max-w-[120px]" },
   { name: "Rachel Larrenaga", title: "General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
   { name: "Martin Kang", title: "Senior Director, AI Product Management", org: "Danaher", photo: "/images/speakers/dhc-2026/martin-kang.png", photoPosition: "center 15%", logo: "/images/logos/speakers/danaher.png" },
   { name: "Laura Jantos", title: "Founder & CEO", org: "LDJ Consulting LLC", photo: "/images/speakers/dhc-2026/laura-jantos.jpg", photoPosition: "center 25%" },
   // Row 6: 4 centered
   { name: "Aden Klein", title: "VP Product & Policy", org: "Vega Health", photo: "/images/speakers/dhc-2026/aden-klein.png", photoPosition: "center 20%", logo: "/images/logos/speakers/vegahealth.png" },
-  { name: "Jessica Jensen", title: "Managing Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/jessica-jensen.jpg", photoPosition: "80% 20%", logo: "/images/logos/speakers/omw.png", logoClass: "h-20 max-w-[200px]" },
+  { name: "Jessica Jensen", title: "Managing Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/jessica-jensen.jpg", photoPosition: "80% 20%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Jake Bernstein", title: "Global AI & Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/kl-gates.svg" },
   { name: "Bob Rapp", title: "Co-Founder", org: "AIGovOps Foundation", photo: "/images/speakers/dhc-2026/bob-rapp.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/aigovops-foundation.png", logoClass: "h-14 max-w-[160px]" },
 ];
