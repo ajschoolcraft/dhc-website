@@ -35,7 +35,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "David W. Johnson", title: "CEO", org: "4sight Health", photo: "/images/speakers/dhc-2026/david-johnson.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/4sight-health.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Lee Kuo", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/lee-kuo.jpg", photoPosition: "75% 15%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Mark Allen", title: "Senior Director of Legal Innovation", org: "Legora", photo: "/images/speakers/dhc-2026/mark-allen.png", photoPosition: "center 20%", logo: "/images/logos/sponsors/legora.png", logoClass: "h-8 max-w-[120px]" },
-  { name: "Rachel Larrenaga", title: "General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
+  { name: "Rachel Larrenaga", title: "Associate General Counsel", org: "Cepheid", photo: "/images/speakers/dhc-2026/rachel-larrenaga.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/cepheid.svg", logoClass: "h-12 max-w-[140px]" },
   { name: "Martin Kang", title: "Senior Director, AI Product Management", org: "Danaher", photo: "/images/speakers/dhc-2026/martin-kang.png", photoPosition: "center 15%", logo: "/images/logos/speakers/danaher.png" },
   { name: "Laura Jantos", title: "Founder & CEO", org: "LDJ Consulting LLC", photo: "/images/speakers/dhc-2026/laura-jantos.jpg", photoPosition: "center 25%" },
   // Row 6: 4 centered
