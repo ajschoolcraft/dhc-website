@@ -174,16 +174,25 @@ export default async function HomePage({
         <p className="mx-auto mt-4 max-w-2xl text-center text-text-light">
           Confirmed speakers for DHC26 — more announcements coming soon.
         </p>
-        <div className="mt-12 space-y-6">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:flex lg:justify-center lg:gap-6">
-            {speakers.slice(0, 5).map((speaker, i) => (
-              <SpeakerCard key={speaker.name} speaker={speaker} className={`${i === 4 ? "col-span-2 sm:col-span-1" : ""} lg:w-[calc((100%-120px)/6)]`} />
+        <div className="mt-12">
+          {/* Mobile/tablet: single continuous grid so no speaker is alone in a row */}
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:hidden">
+            {speakers.map((speaker, i) => (
+              <SpeakerCard key={speaker.name} speaker={speaker} className={i === speakers.length - 1 ? "col-span-2 sm:col-span-1" : undefined} />
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-            {speakers.slice(5).map((speaker, i) => (
-              <SpeakerCard key={speaker.name} speaker={speaker} className={i === 24 ? "lg:col-start-2" : undefined} />
-            ))}
+          {/* Desktop: original layout with centered first row */}
+          <div className="hidden lg:block space-y-6">
+            <div className="flex justify-center gap-6">
+              {speakers.slice(0, 5).map((speaker) => (
+                <SpeakerCard key={speaker.name} speaker={speaker} className="w-[calc((100%-120px)/6)]" />
+              ))}
+            </div>
+            <div className="grid grid-cols-6 gap-6">
+              {speakers.slice(5).map((speaker, i) => (
+                <SpeakerCard key={speaker.name} speaker={speaker} className={i === 24 ? "col-start-2" : undefined} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
