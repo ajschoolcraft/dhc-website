@@ -13,15 +13,25 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { first_name, last_name, email, title, organization, role_category } =
-    body as {
-      first_name: string;
-      last_name: string;
-      email: string;
-      title?: string;
-      organization: string;
-      role_category?: string;
-    };
+  const {
+    first_name,
+    last_name,
+    email,
+    title,
+    organization,
+    role_category,
+    dietary_restrictions,
+    dietary_restrictions_other,
+  } = body as {
+    first_name: string;
+    last_name: string;
+    email: string;
+    title?: string;
+    organization: string;
+    role_category?: string;
+    dietary_restrictions?: string[];
+    dietary_restrictions_other?: string;
+  };
 
   if (!first_name || !last_name || !email || !organization) {
     return NextResponse.json(
@@ -58,7 +68,8 @@ export async function POST(request: NextRequest) {
       status: "registered",
       consent_acknowledged: true,
       topic_interests: [],
-      dietary_restrictions: [],
+      dietary_restrictions: dietary_restrictions ?? [],
+      dietary_restrictions_other: dietary_restrictions_other || null,
       reduced_fee_interest: false,
     })
     .select()
