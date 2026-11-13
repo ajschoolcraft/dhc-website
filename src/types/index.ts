@@ -106,15 +106,6 @@ export type PublicAttendee = {
   organization: string;
 };
 
-export type FeaturedAttendee = {
-  id: string;
-  created_at: string;
-  first_name: string;
-  last_name: string;
-  title: string | null;
-  organization: string;
-  added_by: string | null;
-};
 
 export type SponsorInquiryFormData = {
   name: string;
