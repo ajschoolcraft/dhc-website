@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { sendEmail } from "@/lib/email/send";
+import { RegistrationConfirmedEmail } from "@/lib/email/templates/registration-confirmed";
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient();
@@ -77,6 +79,16 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  try {
+    await sendEmail({
+      to: email,
+      subject: "You're Registered for DHC26",
+      react: RegistrationConfirmedEmail({ firstName: first_name }),
+    });
+  } catch (err) {
+    console.error(`Failed to send registration email to ${email}`, err);
   }
 
   return NextResponse.json(data, { status: 201 });
