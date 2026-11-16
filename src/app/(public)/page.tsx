@@ -43,6 +43,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Jessica Jensen", title: "Managing Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/jessica-jensen.jpg", photoPosition: "80% 20%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Jake Bernstein", title: "Global AI & Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/kl-gates.svg" },
   { name: "Bob Rapp", title: "Co-Founder", org: "AIGovOps Foundation", photo: "/images/speakers/dhc-2026/bob-rapp.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/aigovops-foundation.png", logoClass: "h-14 max-w-[160px]" },
+  { name: "Jennifer Shannon", title: "Co-Founder & Chief Medical Officer", org: "Glacis Technologies", photo: "/images/speakers/dhc-2026/jennifer-shannon.png", photoPosition: "center 20%", logo: "/images/logos/speakers/glacis.png", logoClass: "h-9 max-w-[140px]" },
 ];
 
 const whyDhc26 = [
@@ -188,11 +189,28 @@ export default async function HomePage({
                 <SpeakerCard key={speaker.name} speaker={speaker} className="w-[calc((100%-120px)/6)]" />
               ))}
             </div>
-            <div className="grid grid-cols-6 gap-6">
-              {speakers.slice(5).map((speaker, i) => (
-                <SpeakerCard key={speaker.name} speaker={speaker} className={i === 24 ? "col-start-2" : undefined} />
-              ))}
-            </div>
+            {(() => {
+              const remaining = speakers.slice(5);
+              const fullRowCount = Math.floor(remaining.length / 6) * 6;
+              const gridSpeakers = remaining.slice(0, fullRowCount);
+              const lastRow = remaining.slice(fullRowCount);
+              return (
+                <>
+                  <div className="grid grid-cols-6 gap-6">
+                    {gridSpeakers.map((speaker) => (
+                      <SpeakerCard key={speaker.name} speaker={speaker} />
+                    ))}
+                  </div>
+                  {lastRow.length > 0 && (
+                    <div className="flex justify-center gap-6">
+                      {lastRow.map((speaker) => (
+                        <SpeakerCard key={speaker.name} speaker={speaker} className="w-[calc((100%-120px)/6)]" />
+                      ))}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </div>
       </div>
