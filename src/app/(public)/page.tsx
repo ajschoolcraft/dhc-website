@@ -43,7 +43,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Jessica Jensen", title: "Managing Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/jessica-jensen.jpg", photoPosition: "80% 20%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
   { name: "Jake Bernstein", title: "Global AI & Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/kl-gates.svg" },
   { name: "Bob Rapp", title: "Co-Founder", org: "AIGovOps Foundation", photo: "/images/speakers/dhc-2026/bob-rapp.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/aigovops-foundation.png", logoClass: "h-14 max-w-[160px]" },
-  { name: "Jennifer Shannon", title: "Co-Founder & Chief Medical Officer", org: "Glacis Technologies", photo: "/images/speakers/dhc-2026/jennifer-shannon.png", photoPosition: "20% 0%", logo: "/images/logos/speakers/glacis.png", logoClass: "h-9 max-w-[140px]" },
+  { name: "Jennifer Shannon", title: "Co-Founder & Chief Medical Officer", org: "Glacis Technologies", photo: "/images/speakers/dhc-2026/jennifer-shannon.png", photoPosition: "35% 0%", logo: "/images/logos/speakers/glacis.png", logoClass: "h-9 max-w-[140px]" },
 ];
 
 const whyDhc26 = [
