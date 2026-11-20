@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const speakers: { name: string; title?: string; org?: string; photo: string; photoPosition?: string; logo?: string; logoClass?: string }[] = [
   // Row 1: logo cell + 5 speakers
-  { name: "Jonathan Carlson", title: "VP & Managing Director, Health Futures", org: "Microsoft", photo: "/images/speakers/dhc-2026/jonathan-carlson.png", photoPosition: "center 15%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
+  { name: "Jonathan Carlson", title: "VP & Managing Director, Health Futures", org: "Microsoft", photo: "/images/speakers/dhc-2026/jonathan-carlson-4.png", photoPosition: "center 15%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
   { name: "Julie Barnes", title: "Co-founder & CEO", org: "Maverick Health Policy", photo: "/images/speakers/dhc-2026/julie-barnes.jpg", photoPosition: "45% 30%", logo: "/images/logos/speakers/maverick.png", logoClass: "h-10 max-w-[160px]" },
   { name: "Prof. Glenn Cohen", title: "Deputy Dean", org: "Harvard Law School", photo: "/images/speakers/dhc-2026/glenn-cohen.jpg", photoPosition: "5% 35%" },
   { name: "Ranjani Ramamurthy", title: "Physician-Engineer & Founder", org: "LLMED.AI", photo: "/images/speakers/dhc-2026/ranjani-ramamurthy.jpg", photoPosition: "center 30%", logo: "/images/logos/speakers/llmed-ai.png" },
