@@ -21,7 +21,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Brenton Hill", title: "Operations & General Counsel", org: "CHAI", photo: "/images/speakers/dhc-2026/brenton-hill.jpg", photoPosition: "center 25%", logo: "/images/logos/speakers/chai.png" },
   { name: "Rachel Gruner", title: "US Government Affairs & Health Policy", org: "Microsoft", photo: "/images/speakers/dhc-2026/rachel-gruner.png", photoPosition: "center 20%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
   { name: "David Schoolcraft", title: "Member", org: "Ogden Murphy Wallace", photo: "/images/speakers/dhc-2026/david-schoolcraft.jpg", photoPosition: "95% 20%", logo: "/images/logos/speakers/omw-new.png", logoClass: "h-8 max-w-[140px]" },
-  { name: "Wendy Rubas", title: "Chief Legal & Compliance Officer", org: "Innovaccer", photo: "/images/speakers/dhc-2026/wendy-rubas.png", photoPosition: "center 20%", logo: "/images/logos/speakers/innovaccer.png", logoClass: "h-8 max-w-[150px]" },
+  { name: "Wendy Rubas", title: "Chief Legal & Compliance Officer", org: "Innovaccer", photo: "/images/speakers/dhc-2026/wendy-rubas-2.png", photoPosition: "center 20%", logo: "/images/logos/speakers/innovaccer.png", logoClass: "h-8 max-w-[150px]" },
   { name: "Tayab Waseem", title: "MD, PhD", org: "George Washington University", photo: "/images/speakers/dhc-2026/twaseem.jpg", logo: "/images/logos/speakers/gwu-transparent.png" },
   { name: "Jill Degraff", title: "Chief Privacy & Regulatory Officer", org: "b.well", photo: "/images/speakers/dhc-2026/jill-degraff.jpg", photoPosition: "55% 25%", logo: "/images/logos/speakers/bwell.png" },
   // Row 4
@@ -44,6 +44,7 @@ const speakers: { name: string; title?: string; org?: string; photo: string; pho
   { name: "Jake Bernstein", title: "Global AI & Innovation Partner", org: "K&L Gates", photo: "/images/speakers/dhc-2026/jake-bernstein.jpg", photoPosition: "center 5%", logo: "/images/logos/speakers/kl-gates.svg" },
   { name: "Bob Rapp", title: "Co-Founder", org: "AIGovOps Foundation", photo: "/images/speakers/dhc-2026/bob-rapp.jpg", photoPosition: "center 20%", logo: "/images/logos/speakers/aigovops-foundation.png", logoClass: "h-14 max-w-[160px]" },
   { name: "Jennifer Shannon", title: "Co-Founder & Chief Medical Officer", org: "Glacis Technologies", photo: "/images/speakers/dhc-2026/jennifer-shannon-v4.png", photoPosition: "center 0%", logo: "/images/logos/speakers/glacis.png", logoClass: "h-9 max-w-[140px]" },
+  { name: "Laura Kreofsky", title: "MHA, MBA, PMP", org: "Microsoft", photo: "/images/speakers/dhc-2026/laura-kreofsky.png", photoPosition: "40% 0%", logo: "/images/logos/speakers/microsoft.svg", logoClass: "h-8 max-w-[140px]" },
 ];
 
 const whyDhc26 = [
